@@ -11,7 +11,14 @@ class Welcome extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-                child: Container()
+              child: PageView.builder(
+                itemCount: 3,
+                itemBuilder: (_, currentIndex) {
+                  return Container(
+                    color: Colors.blue,
+                  );
+                },
+              ),
             ),
             _buildBullets()
           ],
@@ -39,7 +46,7 @@ class Welcome extends StatelessWidget {
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.red,
+              color: Colors.grey,
             ),
           ),
           Container(
@@ -47,7 +54,7 @@ class Welcome extends StatelessWidget {
             height: 10,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.red,
+              color: Colors.grey,
             ),
           )
         ],
