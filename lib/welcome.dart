@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:elevenpass/app_colors.dart';
 
 class Welcome extends StatelessWidget {
-  const Welcome({Key? key}) : super(key: key);
+
+  Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                itemCount: 3,
-                itemBuilder: (_, currentIndex) {
-                  return Container(
-                    color: Colors.blue,
-                  );
-                },
-              ),
-            ),
-            _buildBullets()
-          ],
-        ),
+      body:
+        Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 400,
+            color: Colors.red,
+          ),
+          _buildBullets(),
+          Container(
+            width: double.infinity,
+            height: 120,
+            color: Colors.red,
+
+          ),
+        ],
       ),
+
     );
   }
 
@@ -34,24 +36,25 @@ class Welcome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 10,
-            height: 10,
+            width: 8,
+            height: 8,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.red,
             ),
-          ), Container(
-            width: 10,
-            height: 10,
-            margin: EdgeInsets.all(10),
+          ),
+          Container(
+            width: 8,
+            height: 8,
+            margin: EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: Colors.grey,
             ),
           ),
           Container(
-            width: 10,
-            height: 10,
+            width: 8,
+            height: 8,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: Colors.grey,
@@ -62,3 +65,5 @@ class Welcome extends StatelessWidget {
     );
   }
 }
+
+
