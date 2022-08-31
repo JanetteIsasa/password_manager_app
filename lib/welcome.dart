@@ -33,7 +33,7 @@ class Welcome extends StatelessWidget {
       Container(
         padding: EdgeInsets.only(left: 20.0, right: 20.0),
         width: double.infinity,
-        height: 400,
+        height: 485,
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,6 +46,7 @@ class Welcome extends StatelessWidget {
             //Lottie.asset("assets/lottie/security-pay.json"),
             const Text(
               "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.white,
@@ -58,9 +59,9 @@ class Welcome extends StatelessWidget {
     );
   }
   Widget buildBullets() {
-    return Padding(
-      padding: EdgeInsets.all(8),
-      
+    return Container(
+      color: AppColors.primary,
+      height: 40,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -95,22 +96,28 @@ class Welcome extends StatelessWidget {
   }
 
   Widget contentBut(){
-    return Center(
-      child: Container(
+    return Container(
         width: double.infinity,
-        height: 150,
-        color: Colors.white,
+        height: 130,
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(80),
 
+            )
+        ),
+        alignment: Alignment.center,
         child: const Text(
-          "Login In To Your Account ",
-          style: TextStyle(
+            "Login In To Your Account ",
+            style: TextStyle(
             fontSize: 20,
           ),
         ),
-      )
 
 
     );
+
+
   }
 }
 
