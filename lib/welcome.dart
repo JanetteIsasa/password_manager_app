@@ -19,14 +19,21 @@ class Welcome extends StatelessWidget {
             children: [
               contentInfo(),
               buildBullets(),
-              contentBut(),
+              CustomPaint(
+                size: Size(double.infinity,(100*0.5833333333333334).toDouble()),
+                painter: RPSCustomPainter(),
+              )
             ],
+
         ),
+
+
       ),
 
 
     );
   }
+
 
   Widget contentInfo(){
     return
@@ -119,6 +126,45 @@ class Welcome extends StatelessWidget {
 
 
   }
+
+}
+
+class RPSCustomPainter extends CustomPainter{
+
+  @override
+  void paint(Canvas canvas, Size size) {
+
+
+
+    Paint paint0 = Paint()
+      ..color = const Color.fromARGB(255, 255, 255, 255)
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 1;
+
+
+    Path path0 = Path();
+    path0.moveTo(size.width*0.3333333,size.height*0.3571429);
+    path0.quadraticBezierTo(size.width*0.3327083,size.height*0.4632143,size.width*0.3325000,size.height*0.4985714);
+    path0.lineTo(size.width*0.5433333,size.height*0.5000000);
+    path0.lineTo(size.width*0.5416667,size.height*0.3557143);
+    path0.quadraticBezierTo(size.width*0.5245833,size.height*0.3235714,size.width*0.5141667,size.height*0.3200000);
+    path0.quadraticBezierTo(size.width*0.5031250,size.height*0.3017857,size.width*0.4716667,size.height*0.3028571);
+    path0.lineTo(size.width*0.4050000,size.height*0.3014286);
+    path0.quadraticBezierTo(size.width*0.3706250,size.height*0.3003571,size.width*0.3583333,size.height*0.2857143);
+    path0.quadraticBezierTo(size.width*0.3433333,size.height*0.2782143,size.width*0.3325000,size.height*0.2471429);
+    path0.quadraticBezierTo(size.width*0.3327083,size.height*0.2746429,size.width*0.3333333,size.height*0.3571429);
+    path0.close();
+
+    canvas.drawPath(path0, paint0);
+
+
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+
 }
 
 
