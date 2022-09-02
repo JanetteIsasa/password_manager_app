@@ -20,18 +20,18 @@ class Welcome extends StatelessWidget {
             children: [
               contentInfo(),
               buildBullets(),
-              Expanded(child:
-                Container(
-                  width: double.infinity,
+              Expanded(
+                  child: Container(
+                    width: double.infinity,
 
-                  child: CustomPaint(
-                    size: Size(double.infinity, size.height),
-                    painter: RPSCustomPainter(),
+                    child: CustomPaint(
+                      size: Size(double.infinity, size.height),
+                      painter: RPSCustomPainter(),
+                    ),
+
 
                   ),
 
-
-                )
               )
             ],
 
@@ -54,8 +54,12 @@ class Welcome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
-                "Hello",
-                style: TextStyle(fontSize: 48.0, fontFamily: "Montserrat_Alternates", fontWeight: FontWeight.w600, color: Colors.white) ,
+                "Hello!",
+                style: TextStyle(
+                    fontSize: 48.0,
+                    fontFamily: 'MontserratAlternates',
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white) ,
             ),
             //Image.asset('assets/images/security.png', width: 200,),
             Lottie.asset("assets/lottie/cyber-security.json", height: 250),
@@ -66,6 +70,7 @@ class Welcome extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.white,
+                fontWeight: FontWeight.w500,
               ),
             )
 
@@ -86,7 +91,7 @@ class Welcome extends StatelessWidget {
             height: 5,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: AppColors.menuBackground,
+                color: Colors.white,
             ),
           ),
           Container(
@@ -95,7 +100,7 @@ class Welcome extends StatelessWidget {
             margin: EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.white,
+              color: AppColors.menuBackground,
             ),
           ),
           Container(
@@ -103,7 +108,7 @@ class Welcome extends StatelessWidget {
             height: 5,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.white,
+              color:  AppColors.menuBackground,
             ),
           )
         ],
@@ -118,6 +123,21 @@ class RPSCustomPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
 
+    TextPainter textPainter = TextPainter(
+        text: const TextSpan(
+          text: 'Login In To Your Account',
+          style: TextStyle(
+            color: AppColors.primary,
+            fontSize: 20,
+            fontFamily: "Montserrat",
+            //decoration: TextDecoration.underline,
+            fontWeight: FontWeight.w500,
+          ),
+
+        ),
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.center
+    );
 
 
     Paint paint0 = Paint()
@@ -127,21 +147,31 @@ class RPSCustomPainter extends CustomPainter{
 
 
     Path path0 = Path();
-    path0.moveTo(0,size.height);
-    path0.lineTo(0,0);
-    path0.quadraticBezierTo(size.width*0.0445600,size.height*0.1358400,size.width*0.0891600,size.height*0.1554800);
-    path0.quadraticBezierTo(size.width*0.1370800,size.height*0.1896800,size.width*0.2580000,size.height*0.1920000);
-    path0.lineTo(size.width*0.6980000,size.height*0.1920000);
-    path0.quadraticBezierTo(size.width*0.8000000,size.height*0.1950000,size.width*0.8340000,size.height*0.1960000);
-    path0.cubicTo(size.width*0.9164000,size.height*0.1901600,size.width*0.9259600,size.height*0.2175600,size.width*0.9519400,size.height*0.2390800);
-    path0.quadraticBezierTo(size.width*0.9862800,size.height*0.2696800,size.width,size.height*0.3398000);
-    path0.lineTo(size.width,size.height*0.9973200);
-    path0.lineTo(size.width*0.3913400,size.height);
+    path0.moveTo(0,size.height*1.0017200);
+    path0.lineTo(0,size.height*0.0017200);
+    path0.quadraticBezierTo(size.width*0.0445600,size.height*0.1375600,size.width*0.0891600,size.height*0.1572000);
+    path0.quadraticBezierTo(size.width*0.1370800,size.height*0.1914000,size.width*0.2580000,size.height*0.1937200);
+    path0.lineTo(size.width*0.6980000,size.height*0.1937200);
+    path0.quadraticBezierTo(size.width*0.7930000,size.height*0.1967200,size.width*0.8270000,size.height*0.1977200);
+    path0.cubicTo(size.width*0.8701600,size.height*0.1964400,size.width*0.8970400,size.height*0.1971200,size.width*0.9149800,size.height*0.2054400);
+    path0.quadraticBezierTo(size.width*1.0013200,size.height*0.2600400,size.width,size.height*0.3735200);
+    path0.lineTo(size.width,size.height*0.9990400);
+    path0.lineTo(size.width*0.3913400,size.height*1.0017200);
 
     canvas.drawPath(path0, paint0);
 
 
+
+    textPainter.layout(
+      minWidth: 0,
+      maxWidth: size.width,
+    );
+
+    final offset = Offset(200 - (textPainter.width / 2), 80 - (textPainter.height / 2));
+    textPainter.paint(canvas,offset);
+
   }
+
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
@@ -149,6 +179,7 @@ class RPSCustomPainter extends CustomPainter{
   }
 
 }
+
 
 
 
