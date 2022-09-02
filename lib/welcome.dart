@@ -44,11 +44,10 @@ class Welcome extends StatelessWidget {
     );
   }
 
-
   Widget contentInfo(){
     return
       Container(
-        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+        padding: EdgeInsets.all(25),
         width: double.infinity,
         height: 480,
         child: Column(
@@ -56,7 +55,7 @@ class Welcome extends StatelessWidget {
           children: [
             const Text(
                 "Hello",
-                style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold, color: Colors.white) ,
+                style: TextStyle(fontSize: 48.0, fontFamily: "Montserrat_Alternates", fontWeight: FontWeight.w600, color: Colors.white) ,
             ),
             //Image.asset('assets/images/security.png', width: 200,),
             Lottie.asset("assets/lottie/cyber-security.json", height: 250),
@@ -77,8 +76,8 @@ class Welcome extends StatelessWidget {
   }
   Widget buildBullets() {
     return Container(
-      color: AppColors.inputIconColor,
-      height: 40,
+      color: AppColors.primary,
+      height: 25,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -119,27 +118,27 @@ class RPSCustomPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
 
+
+
     Paint paint0 = Paint()
       ..color = const Color.fromARGB(255, 255, 255, 255)
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
 
 
-    Path path = Path();
-    path.moveTo(0, 20); // Start
-    path.quadraticBezierTo(0.5 * 0.20, 0, size.width * 0.35, 0);
-    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
-    path.arcToPoint(Offset(size.width * 0.60, 20), radius: Radius.circular(20.0), clockwise: false);
-    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.lineTo(0, 20);
-    canvas.drawShadow(path, Colors.black, 5, true);
+    Path path0 = Path();
+    path0.moveTo(0,size.height);
+    path0.lineTo(0,0);
+    path0.quadraticBezierTo(size.width*0.0445600,size.height*0.1358400,size.width*0.0891600,size.height*0.1554800);
+    path0.quadraticBezierTo(size.width*0.1370800,size.height*0.1896800,size.width*0.2580000,size.height*0.1920000);
+    path0.lineTo(size.width*0.6980000,size.height*0.1920000);
+    path0.quadraticBezierTo(size.width*0.8000000,size.height*0.1950000,size.width*0.8340000,size.height*0.1960000);
+    path0.cubicTo(size.width*0.9164000,size.height*0.1901600,size.width*0.9259600,size.height*0.2175600,size.width*0.9519400,size.height*0.2390800);
+    path0.quadraticBezierTo(size.width*0.9862800,size.height*0.2696800,size.width,size.height*0.3398000);
+    path0.lineTo(size.width,size.height*0.9973200);
+    path0.lineTo(size.width*0.3913400,size.height);
 
-    path.close();
-
-    canvas.drawPath(path, paint0);
+    canvas.drawPath(path0, paint0);
 
 
   }
@@ -150,5 +149,8 @@ class RPSCustomPainter extends CustomPainter{
   }
 
 }
+
+
+
 
 

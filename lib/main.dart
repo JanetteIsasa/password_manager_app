@@ -18,12 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: const TextTheme(
-            headline1: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.blueAccent,
-          ),
+
         ),
+        fontFamily: "Montserrat",
         primarySwatch: Colors.blue,
       ),
       //home: const SplashScreen(),
