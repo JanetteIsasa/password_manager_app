@@ -27,6 +27,15 @@ class Welcome extends StatelessWidget {
                     child: CustomPaint(
                       size: Size(double.infinity, size.height),
                       painter: RPSCustomPainter(),
+                      child: const Center(
+                          child: Text("Login In To Your Account",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                      ),
                     ),
 
 
@@ -123,21 +132,7 @@ class RPSCustomPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
 
-    TextPainter textPainter = TextPainter(
-        text: const TextSpan(
-          text: 'Login In To Your Account',
-          style: TextStyle(
-            color: AppColors.primary,
-            fontSize: 20,
-            fontFamily: "Montserrat",
-            //decoration: TextDecoration.underline,
-            fontWeight: FontWeight.w500,
-          ),
 
-        ),
-        textDirection: TextDirection.ltr,
-        textAlign: TextAlign.center
-    );
 
 
     Paint paint0 = Paint()
@@ -162,13 +157,6 @@ class RPSCustomPainter extends CustomPainter{
 
 
 
-    textPainter.layout(
-      minWidth: 0,
-      maxWidth: size.width,
-    );
-
-    final offset = Offset(200 - (textPainter.width / 2), 80 - (textPainter.height / 2));
-    textPainter.paint(canvas,offset);
 
   }
 
