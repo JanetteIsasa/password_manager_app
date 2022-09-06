@@ -74,7 +74,6 @@ class Welcome extends StatelessWidget {
         padding: EdgeInsets.all(25),
         width: double.infinity,
         height: double.infinity,
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -194,10 +193,8 @@ class Welcome extends StatelessWidget {
                 )
               ],
             )
-
           ],
         ),
-
       );
   }
   Widget contentPage3(){
