@@ -153,8 +153,7 @@ class Welcome extends StatelessWidget {
                   color: Colors.white) ,
             ),
             //Image.asset('assets/images/security.png', width: 200,),
-            Lottie.asset("assets/lottie/cyber-security.json", height: 250),
-            //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
+            Lottie.asset("assets/lottie/96833-login.json", height: 250),
             const Text(
               "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
               textAlign: TextAlign.center,
@@ -219,8 +218,7 @@ class Welcome extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: Colors.white) ,
             ),
-            //Image.asset('assets/images/security.png', width: 200,),
-            Lottie.asset("assets/lottie/cyber-security.json", height: 250),
+            Lottie.asset("assets/lottie/forgot-password.json", height: 250),
             //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
             const Text(
               "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
