@@ -28,15 +28,17 @@ class Welcome extends StatelessWidget {
                         size: Size(double.infinity, size.height),
                         painter: RPSCustomPainter(),
                         child: Container(
-                            margin: EdgeInsets.only(top: 30.0),
+                            margin: EdgeInsets.only(top: 20.0),
                             child: const Center(
                               child: TextButton(
                                   onPressed: null,
                                   child: Text(
 
                                     'Login In To Your Account',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: AppColors.primary
+                                        color: AppColors.primary,
+
                                     ),
                                   )
                               ),
