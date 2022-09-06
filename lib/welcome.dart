@@ -19,36 +19,47 @@ class Welcome extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                    contentInfo(),
-                    buildBullets(),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 140,
-                      child: CustomPaint(
-                        size: Size(double.infinity, size.height),
-                        painter: RPSCustomPainter(),
-                        child: Container(
-                            margin: EdgeInsets.only(top: 20.0),
-                            child: const Center(
-                              child: TextButton(
-                                  onPressed: null,
-                                  child: Text(
+                Expanded(
+                  child: PageView(
+                    children: [
+                      contentPage(),
+                      contentPage2(),
+                      contentPage3(),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 140,
+                  child: CustomPaint(
+                    size: Size(double.infinity, size.height),
+                    painter: RPSCustomPainter(),
+                    child: Container(
+                        margin: EdgeInsets.only(top: 20.0),
+                        child: const Center(
+                          child: TextButton(
+                              onPressed: null,
+                              child: Text(
 
-                                    'Login In To Your Account',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: AppColors.primary,
+                                'Login In To Your Account',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColors.primary,
 
-                                    ),
-                                  )
-                              ),
-                            )
-
-                        ),
-
-                      ),
+                                ),
+                              )
+                          ),
+                        )
 
                     ),
+
+                  ),
+
+                ),
+
+
+                    //buildBullets(),
+
               ],
           ),
         ),
@@ -57,11 +68,12 @@ class Welcome extends StatelessWidget {
     );
   }
 
-  Widget contentInfo(){
+  Widget contentPage(){
     return
       Container(
         padding: EdgeInsets.all(25),
         width: double.infinity,
+        height: double.infinity,
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -85,6 +97,36 @@ class Welcome extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  width: 5,
+                  height: 5,
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: AppColors.menuBackground,
+                  ),
+                ),
+                Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color:  AppColors.menuBackground,
+                  ),
+                )
+              ],
             )
 
           ],
@@ -92,42 +134,142 @@ class Welcome extends StatelessWidget {
 
     );
   }
-  Widget buildBullets() {
-    return Container(
-      color: AppColors.primary,
-      height: 20,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 5,
-            height: 5,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+  Widget contentPage2(){
+    return
+      Container(
+        padding: EdgeInsets.all(25),
+        width: double.infinity,
+        height: double.infinity,
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              "Hello!",
+              style: TextStyle(
+                  fontSize: 48.0,
+                  fontFamily: 'MontserratAlternates',
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white) ,
+            ),
+            //Image.asset('assets/images/security.png', width: 200,),
+            Lottie.asset("assets/lottie/cyber-security.json", height: 250),
+            //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
+            const Text(
+              "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18.0,
                 color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          Container(
-            width: 5,
-            height: 5,
-            margin: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: AppColors.menuBackground,
-            ),
-          ),
-          Container(
-            width: 5,
-            height: 5,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color:  AppColors.menuBackground,
-            ),
-          )
-        ],
-      ),
-    );
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: AppColors.menuBackground,
+
+                  ),
+                ),
+                Container(
+                  width: 5,
+                  height: 5,
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color:  AppColors.menuBackground,
+                  ),
+                )
+              ],
+            )
+
+          ],
+        ),
+
+      );
   }
+  Widget contentPage3(){
+    return
+      Container(
+        padding: EdgeInsets.all(25),
+        width: double.infinity,
+        height: double.infinity,
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              "Hello!",
+              style: TextStyle(
+                  fontSize: 48.0,
+                  fontFamily: 'MontserratAlternates',
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white) ,
+            ),
+            //Image.asset('assets/images/security.png', width: 200,),
+            Lottie.asset("assets/lottie/cyber-security.json", height: 250),
+            //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
+            const Text(
+              "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: AppColors.menuBackground,
+
+                  ),
+                ),
+                Container(
+                  width: 5,
+                  height: 5,
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: AppColors.menuBackground,
+
+                  ),
+                ),
+                Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            )
+
+          ],
+        ),
+
+      );
+  }
+
 
 }
 
