@@ -15,43 +15,42 @@ class Welcome extends StatelessWidget {
 
       backgroundColor: AppColors.primary,
       body: SafeArea(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              contentInfo(),
-              buildBullets(),
-              Expanded(
-                  child: Container(
-                    width: double.infinity,
-
-                    child: CustomPaint(
-                      size: Size(double.infinity, size.height),
-                      painter: RPSCustomPainter(),
-                      child: const Center(
+        child: Expanded(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                    contentInfo(),
+                    buildBullets(),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 140,
+                      child: CustomPaint(
+                        size: Size(double.infinity, size.height),
+                        painter: RPSCustomPainter(),
+                        child: Container(
+                            margin: EdgeInsets.only(top: 30.0),
+                            child: const Center(
                               child: TextButton(
-                                onPressed: null,
-                                child: Text(
-                                      'Login In To Your Account',
-                                      style: TextStyle(
-                                          color: AppColors.primary
-                                      ),
+                                  onPressed: null,
+                                  child: Text(
+
+                                    'Login In To Your Account',
+                                    style: TextStyle(
+                                        color: AppColors.primary
+                                    ),
                                   )
                               ),
-                           ),
+                            )
+
+                        ),
+
+                      ),
 
                     ),
-
-
-                  ),
-
-              )
-            ],
-
+              ],
+          ),
         ),
-
-
       ),
-
 
     );
   }
@@ -61,7 +60,7 @@ class Welcome extends StatelessWidget {
       Container(
         padding: EdgeInsets.all(25),
         width: double.infinity,
-        height: 480,
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -94,7 +93,7 @@ class Welcome extends StatelessWidget {
   Widget buildBullets() {
     return Container(
       color: AppColors.primary,
-      height: 25,
+      height: 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
