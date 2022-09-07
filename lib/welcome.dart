@@ -56,10 +56,6 @@ class Welcome extends StatelessWidget {
                   ),
 
                 ),
-
-
-                    //buildBullets(),
-
               ],
           ),
         ),
@@ -144,7 +140,7 @@ class Welcome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
-              "Hello!",
+              " Vaults ",
               style: TextStyle(
                   fontSize: 48.0,
                   fontFamily: 'MontserratAlternates',
@@ -154,7 +150,7 @@ class Welcome extends StatelessWidget {
             //Image.asset('assets/images/security.png', width: 200,),
             Lottie.asset("assets/lottie/96833-login.json", height: 250),
             const Text(
-              "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
+              "With this app you can add all the accounts you want by carrying out an order through vaults, this way it will be much easier to access them.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18.0,
@@ -208,17 +204,17 @@ class Welcome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
-              "Hello!",
+              "Password",
               style: TextStyle(
                   fontSize: 48.0,
                   fontFamily: 'MontserratAlternates',
                   fontWeight: FontWeight.w600,
                   color: Colors.white) ,
             ),
-            Lottie.asset("assets/lottie/forgot-password.json", height: 250),
+            Lottie.asset("assets/lottie/forgot-password.json", height: 180),
             //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
             const Text(
-              "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
+              "If you do not remember your password you can check it by entering your trunk and your account. You only have to remember a single password that is that of this application",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18.0,
@@ -265,7 +261,6 @@ class Welcome extends StatelessWidget {
       );
   }
 
-
 }
 
 class RPSCustomPainter extends CustomPainter{
@@ -273,12 +268,10 @@ class RPSCustomPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
 
-
     Paint paint0 = Paint()
       ..color = const Color.fromARGB(255, 255, 255, 255)
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
-
 
     Path path0 = Path();
     path0.moveTo(0,size.height*1.0017200);
@@ -294,12 +287,8 @@ class RPSCustomPainter extends CustomPainter{
 
     canvas.drawPath(path0, paint0);
 
-
-
-
   }
-
-
+  
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
