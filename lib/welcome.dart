@@ -6,6 +6,26 @@ import 'app_colors.dart';
 
 class Welcome extends StatelessWidget {
 
+  final buttonPageOn = Container(
+    margin: EdgeInsets.only(right: 5.0, left: 5.0),
+    width: 5,
+    height: 5,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.white,
+    ),
+  );
+
+  final buttonPageOf = Container(
+    margin: EdgeInsets.only(right: 5.0, left: 5.0),
+    width: 5,
+    height: 5,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      color: AppColors.menuBackground,
+    ),
+  );
+
   Welcome({Key? key}) : super(key: key);
 
   @override
@@ -96,31 +116,9 @@ class Welcome extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  width: 5,
-                  height: 5,
-                  margin: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.menuBackground,
-                  ),
-                ),
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color:  AppColors.menuBackground,
-                  ),
-                )
+                buttonPageOn,
+                buttonPageOf,
+                buttonPageOf
               ],
             )
 
@@ -161,32 +159,9 @@ class Welcome extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.menuBackground,
-
-                  ),
-                ),
-                Container(
-                  width: 5,
-                  height: 5,
-                  margin: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color:  AppColors.menuBackground,
-                  ),
-                )
+                buttonPageOf,
+                buttonPageOn,
+                buttonPageOf
               ],
             )
           ],
@@ -225,33 +200,9 @@ class Welcome extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.menuBackground,
-
-                  ),
-                ),
-                Container(
-                  width: 5,
-                  height: 5,
-                  margin: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.menuBackground,
-
-                  ),
-                ),
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                  ),
-                )
+                buttonPageOf,
+                buttonPageOf,
+                buttonPageOn,
               ],
             )
 
@@ -288,7 +239,7 @@ class RPSCustomPainter extends CustomPainter{
     canvas.drawPath(path0, paint0);
 
   }
-  
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
