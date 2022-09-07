@@ -60,16 +60,14 @@ class Welcome extends StatelessWidget {
                           child: TextButton(
                               onPressed: null,
                               child: Text(
-
-                                'Login In To Your Account',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: AppColors.primary,
-
-                                ),
-                              )
-                          ),
-                        )
+                                  'Login In To Your Account',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: AppColors.primary,
+                                  ),
+                                )
+                            ),
+                          )
 
                     ),
 
@@ -103,7 +101,6 @@ class Welcome extends StatelessWidget {
             ),
             //Image.asset('assets/images/security.png', width: 200,),
             Lottie.asset("assets/lottie/cyber-security.json", height: 250),
-            //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
             const Text(
               "An Internet user has to remember, on average, a total of 10 passwords each day. One in three users are forced to write down their passwords so as not to forget them",
               textAlign: TextAlign.center,
@@ -187,7 +184,6 @@ class Welcome extends StatelessWidget {
                   color: Colors.white) ,
             ),
             Lottie.asset("assets/lottie/forgot-password.json", height: 180),
-            //Lottie.network("https://assets5.lottiefiles.com/packages/lf20_ndt8zfny.json"),
             const Text(
               "If you do not remember your password you can check it by entering your trunk and your account. You only have to remember a single password that is that of this application",
               textAlign: TextAlign.center,
@@ -197,6 +193,7 @@ class Welcome extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -205,10 +202,8 @@ class Welcome extends StatelessWidget {
                 buttonPageOn,
               ],
             )
-
           ],
         ),
-
       );
   }
 
