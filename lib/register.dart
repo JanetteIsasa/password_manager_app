@@ -1,3 +1,4 @@
+import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui' as ui;
@@ -54,15 +55,16 @@ class Register extends StatelessWidget {
 
           Expanded(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  //Contiene el Texto central
                   Container(
                     height: (size.height * 0.09),
-
                     child: const Center(
                       child: Text(
                         "Create Account",
                         style: TextStyle(
-                            fontFamily: "Monserrat",
+                            fontFamily: "Montserrat",
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: AppColors.primary
@@ -70,6 +72,53 @@ class Register extends StatelessWidget {
 
                       ),
                     )
+                  ),
+                  // Contiene los inputs
+                  Container(
+                    height: (size.height * 0.25),
+                    color: AppColors.primary,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: (size.height * 0.07),
+                          color: AppColors.menuBackground,
+                        ),
+                        Container(
+                          height: (size.height * 0.07),
+                          color: AppColors.menuBackground,
+                        ),
+                        Container(
+                          height: (size.height * 0.07),
+                          color: AppColors.menuBackground,
+                        ),
+
+                      ],
+                    ),
+                  ),
+                  //Contiene el botón
+                  Container(
+                    padding: EdgeInsets.fromLTRB(20,0, 20, 0),
+                    child: ButtonPrimary(
+                      text: "Sign Up",
+                      onPressed: (){},
+                      height: (size.height * 0.075),
+                      width: double.infinity,
+                    ),
+                  ),
+
+                  Container(
+                    height: (size.height * 0.10),
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: const Text(
+                      "Already have a account? Login here",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Montserrat",
+                        color: AppColors.inputLabels,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
 
                 ],

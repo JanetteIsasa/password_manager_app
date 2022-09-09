@@ -13,7 +13,7 @@ class TextAppBar extends StatelessWidget {
       title,
       style: const TextStyle(
           color: Colors.white,
-          fontFamily: 'Monserrat',
+          fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600,
           fontSize: 28.0),
     );
