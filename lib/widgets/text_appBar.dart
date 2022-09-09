@@ -1,4 +1,4 @@
-import 'package:elevenpass/app_colors.dart';
+import 'package:elevenpass/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TextAppBar extends StatelessWidget {

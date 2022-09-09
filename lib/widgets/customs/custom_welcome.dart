@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 
-class RPSCustomPainter extends CustomPainter{
+class CustomWelcome extends CustomPainter{
 
   @override
   void paint(Canvas canvas, Size size) {

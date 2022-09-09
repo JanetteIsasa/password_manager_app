@@ -2,9 +2,10 @@ import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui' as ui;
-import 'app_colors.dart';
-import 'components/text_appBar.dart';
-import 'customs/custom2.dart';
+import '../../../widgets/app_colors.dart';
+import '../../../widgets/customs/custom2.dart';
+import '../../../widgets/text_appBar.dart';
+
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class Register extends StatelessWidget {
               children: [
                 CustomPaint(
                   size: Size(double.infinity, size.height * 0.25),
-                  painter: RPSCustomPainter2(),
+                  painter: CustomPainter2(),
                 ),
                 Positioned(
                   top: -18,

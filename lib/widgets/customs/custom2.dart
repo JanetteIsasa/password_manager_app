@@ -1,8 +1,8 @@
-import 'package:elevenpass/app_colors.dart';
+import 'package:elevenpass/widgets/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:ui' as ui;
 
-class RPSCustomPainter2 extends CustomPainter{
+class CustomPainter2 extends CustomPainter{
 
   @override
   void paint(Canvas canvas, Size size) {

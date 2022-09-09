@@ -1,8 +1,9 @@
+import 'package:elevenpass/widgets/customs/custom_welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui' as ui;
-import 'app_colors.dart';
-import 'package:elevenpass/customs/custom_welcome.dart';
+import 'widgets/app_colors.dart';
+
 
 
 class Welcome extends StatelessWidget {
@@ -55,7 +56,7 @@ class Welcome extends StatelessWidget {
                   height: 140,
                   child: CustomPaint(
                     size: Size(double.infinity, size.height),
-                    painter: RPSCustomPainter(),
+                    painter: CustomWelcome(),
                     child: Container(
                         margin: EdgeInsets.only(top: 20.0),
                         child: const Center(

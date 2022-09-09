@@ -1,4 +1,4 @@
-import 'package:elevenpass/app_colors.dart';
+import 'package:elevenpass/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonPrimary extends StatefulWidget {
@@ -40,7 +40,7 @@ class _ButtonPrimary extends State<ButtonPrimary>{
             widget.text,
             style: const TextStyle(
                 fontSize: 20.0,
-                fontFamily: "Monserrat",
+                fontFamily: "Montserrat",
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
             ),

@@ -1,6 +1,6 @@
 //import 'package:elevenpass/splashscreen.dart';
-import 'package:elevenpass/app_colors.dart';
-import 'package:elevenpass/register.dart';
+import 'package:elevenpass/widgets/app_colors.dart';
+import 'package:elevenpass/Users/ui/screens/register.dart';
 import 'package:flutter/material.dart';
 
 void main() {
