@@ -95,8 +95,7 @@ flutter:
            weight: 600
          - asset: fonts/Montserrat_Alternates/MontserratAlternates-Medium.ttf
            weight: 500
-         - asset: fonts/Montserrat_Alternates/MontserratAlternates-SemiBold.ttf
-           weight: 600
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,7 +1,7 @@
-import 'package:elevenpass/splashscreen.dart';
+//import 'package:elevenpass/splashscreen.dart';
+import 'package:elevenpass/app_colors.dart';
+import 'package:elevenpass/register.dart';
 import 'package:flutter/material.dart';
-
-
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
 
         ),
         fontFamily: "Montserrat",
-        primarySwatch: Colors.blue,
+        backgroundColor: AppColors.primary,
       ),
-      home: const SplashScreen(),
+      home: const Register(),
       debugShowCheckedModeBanner: false,
     );
   }
