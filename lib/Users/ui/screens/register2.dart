@@ -75,52 +75,57 @@ class _RegisterState extends State<Register> {
             ),
 
             Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //Contiene el Texto central
-                      Container(
-                          height: (size.height * 0.09),
-                          child: const Center(
-                            child: Text(
-                              "Create Account",
-                              style: TextStyle(
-                                  fontFamily: "Montserrat",
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.primary
-                              ),
-
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //Contiene el Texto central
+                    Container(
+                        height: (size.height * 0.09),
+                        child: const Center(
+                          child: Text(
+                            "Create Account",
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary
                             ),
-                          )
-                      ),
-                      Container(
-                        child: Form(
-                          key: keyForm,
-                          child: formUI(),
-                        ),
-                      ),
 
-
-                      Container(
-                        height: (size.height * 0.10),
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: const Text(
-                          "Already have a account? Login here",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Montserrat",
-                            color: AppColors.inputLabels,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                        )
+                    ),
+                    formUI(),
+                    GestureDetector(
+                        onTap: (){
+                          save();
+                        },
+                        child:Container(
+                          padding: EdgeInsets.fromLTRB(20,0, 20, 0),
+                          child: ButtonPrimary(
+                            text: "Sign Up",
+                            onPressed: (){},
+                            height: (size.height * 0.075),
+                            width: double.infinity,
+                          ),
+                        )),
 
-                    ],
-                  ),
-                ),
-            ),
+                    Container(
+                      height: (size.height * 0.10),
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: const Text(
+                        "Already have a account? Login here",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "Montserrat",
+                          color: AppColors.inputLabels,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+
+                  ],
+                )
+            )
           ],
         )
 
@@ -132,9 +137,8 @@ class _RegisterState extends State<Register> {
     final Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
-      height: (size.height * 0.37),
+      height: (size.height * 0.25),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             height: (size.height * 0.07),
@@ -175,10 +179,11 @@ class _RegisterState extends State<Register> {
                 controller: emailCtrl,
                 decoration: const InputDecoration(
                   border: InputBorder.none ,
-                  hintText: "Enter your email",
-                  suffixIcon: Icon(Icons.email,color: AppColors.inputIconColor,),
+                  hintText: "Enter your username",
+                  suffixIcon: Icon(Icons.email,color: AppColors.primary,),
                 ),
                 keyboardType: TextInputType.emailAddress,
+                maxLength: 32,
                 validator: (value) {
                   String pattern =
                       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -207,43 +212,32 @@ class _RegisterState extends State<Register> {
                 controller: passwordCtrl,
                 obscureText: !_obscureText,//This will ob
                 decoration: InputDecoration(
-                  border: InputBorder.none ,
+                  labelText: 'Password',
                   hintText: 'Enter your password',
                   // Here is key idea
                   suffixIcon: IconButton(
-                    icon: Icon(
-                      // Based on passwordVisible state choose the icon
-                      _obscureText
-                          ? Icons.visibility : Icons.visibility_off,
-                      color: AppColors.inputIconColor,
-                    ),
-                    onPressed: () {
-                      // Update the state i.e. toogle the state of passwordVisible variable
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
+                      icon: Icon(
+                        // Based on passwordVisible state choose the icon
+                        _obscureText
+                        ? Icons.visibility : Icons.visibility_off,
+                        color: AppColors.inputIconColor,
+                      ),
+                      onPressed: () {
+                        // Update the state i.e. toogle the state of passwordVisible variable
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
                   ),
                 ),
                 validator: (val) => val!.length < 6 ? 'Password too short.' : null,
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.fromLTRB(20,0, 20, 0),
-            child: ButtonPrimary(
-              text: "Sign Up",
-              onPressed: (){
-                save();
-              },
-              height: (size.height * 0.075),
-              width: double.infinity,
-            ),
-          )
 
         ],
-      ) ,
-    );
+      ),
+    ) ;
   }
 
   save() {
@@ -252,7 +246,6 @@ class _RegisterState extends State<Register> {
       print("PAs ${passwordCtrl.text}");
       print("Correo ${emailCtrl.text}");
       keyForm.currentState?.reset();
-
     }
   }
 
