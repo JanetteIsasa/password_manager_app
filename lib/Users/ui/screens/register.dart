@@ -101,11 +101,9 @@ class _RegisterState extends State<Register> {
                           child: formUI(),
                         ),
                       ),
-
-
                       Container(
                         height: (size.height * 0.10),
-                        padding: EdgeInsets.only(top: 10.0),
+                        padding: EdgeInsets.only(top: 20.0),
                         child: const Text(
                           "Already have a account? Login here",
                           style: TextStyle(
@@ -145,19 +143,23 @@ class _RegisterState extends State<Register> {
             ),
             child:  Center(
               child: TextFormField(
-                controller: nameCtrl,
+                controller: emailCtrl,
                 decoration: const InputDecoration(
                   border: InputBorder.none ,
-                  hintText: "Enter your username",
-                  suffixIcon: Icon(Icons.person,color: AppColors.primary,),
+                  hintText: "Enter your email",
+                  suffixIcon: Icon(Icons.mail,color: AppColors.inputIconColor,),
                 ),
+                keyboardType: TextInputType.emailAddress,
                 validator: (value) {
-                  String pattern = r'(^[a-zA-Z ]*$)';
+                  String pattern =
+                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                   RegExp regExp = RegExp(pattern);
                   if (value?.length == 0) {
-                    return "El nombre es necesario";
+                    return "El correo es necesario";
                   } else if (!regExp.hasMatch(value!)) {
-                    return "El nombre debe de ser a-z y A-Z";
+                    return "Correo invalido";
+                  } else {
+                    return null;
                   }
                 },
               ),
@@ -172,23 +174,19 @@ class _RegisterState extends State<Register> {
             ),
             child:  Center(
               child: TextFormField(
-                controller: emailCtrl,
+                controller: nameCtrl,
                 decoration: const InputDecoration(
                   border: InputBorder.none ,
-                  hintText: "Enter your email",
-                  suffixIcon: Icon(Icons.email,color: AppColors.inputIconColor,),
+                  hintText: "Enter your username",
+                  suffixIcon: Icon(Icons.person,color: AppColors.inputIconColor,),
                 ),
-                keyboardType: TextInputType.emailAddress,
                 validator: (value) {
-                  String pattern =
-                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                  String pattern = r'(^[a-zA-Z ]*$)';
                   RegExp regExp = RegExp(pattern);
                   if (value?.length == 0) {
-                    return "El correo es necesario";
+                    return "El nombre es necesario";
                   } else if (!regExp.hasMatch(value!)) {
-                    return "Correo invalido";
-                  } else {
-                    return null;
+                    return "El nombre debe de ser a-z y A-Z";
                   }
                 },
               ),
@@ -230,7 +228,6 @@ class _RegisterState extends State<Register> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(20,0, 20, 0),
             child: ButtonPrimary(
               text: "Sign Up",
               onPressed: (){
@@ -240,7 +237,6 @@ class _RegisterState extends State<Register> {
               width: double.infinity,
             ),
           )
-
         ],
       ) ,
     );
