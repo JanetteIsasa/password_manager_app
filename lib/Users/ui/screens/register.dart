@@ -42,7 +42,7 @@ class _RegisterState extends State<Register> {
           elevation: 0,
           leading: InkResponse(
             child: Container(
-              margin: const EdgeInsets.fromLTRB(10, 10,10,10),
+              margin: const EdgeInsets.fromLTRB(5, 5,5,5),
               padding: const EdgeInsets.only(left: 10),
               decoration:
               BoxDecoration(borderRadius: BorderRadius.circular(100), color: AppColors.menuBackground),
@@ -73,7 +73,6 @@ class _RegisterState extends State<Register> {
                   )
                 ]
             ),
-
             Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -121,8 +120,6 @@ class _RegisterState extends State<Register> {
             ),
           ],
         )
-
-
     );
   }
 
@@ -245,7 +242,7 @@ class _RegisterState extends State<Register> {
   save() {
     if (keyForm.currentState!.validate()) {
       print("Nombre ${nameCtrl.text}");
-      print("PAs ${passwordCtrl.text}");
+      print("Pas ${passwordCtrl.text}");
       print("Correo ${emailCtrl.text}");
       keyForm.currentState?.reset();
 
