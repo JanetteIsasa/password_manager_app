@@ -6,7 +6,6 @@ import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_appBar.dart';
 
-
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
@@ -16,9 +15,9 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   GlobalKey<FormState> keyForm = GlobalKey();
-  TextEditingController  nameCtrl = TextEditingController();
-  TextEditingController  emailCtrl = TextEditingController();
-  TextEditingController  passwordCtrl = TextEditingController();
+  TextEditingController nameCtrl = TextEditingController();
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
 
   // Initially password is obscure
   bool _obscureText = true;
@@ -42,192 +41,178 @@ class _RegisterState extends State<Register> {
           elevation: 0,
           leading: InkResponse(
             child: Container(
-              margin: const EdgeInsets.fromLTRB(5, 5,5,5),
+              margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
               padding: const EdgeInsets.only(left: 10),
-              decoration:
-              BoxDecoration(borderRadius: BorderRadius.circular(100), color: AppColors.menuBackground),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: AppColors.menuBackground),
               child: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
                 size: 24,
               ),
-            ), onTap: (){
-            Navigator.of(context).pop();
-          },
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
           ),
           title: TextAppBar("11Pass"),
           centerTitle: true,
         ),
         body: Column(
           children: [
-            Stack(
-                alignment: Alignment.center,
-                children: [
-                  CustomPaint(
-                    size: Size(double.infinity, size.height * 0.25),
-                    painter: CustomPainter2(),
-                  ),
-                  Positioned(
-                    top: -18,
-                    child: Lottie.network("https://assets6.lottiefiles.com/packages/lf20_u8o7BL.json", height: 250),
-                  )
-                ]
-            ),
+            Stack(alignment: Alignment.center, children: [
+              CustomPaint(
+                size: Size(double.infinity, size.height * 0.25),
+                painter: CustomPainter2(),
+              ),
+              Positioned(
+                top: 10,
+                child: Lottie.asset("assets/lottie/registration.json", height: 200)
+              )
+            ]),
             Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //Contiene el Texto central
-                      Container(
-                          height: (size.height * 0.09),
-                          child: const Center(
-                            child: Text(
-                              "Create Account",
-                              style: TextStyle(
-                                  fontFamily: "Montserrat",
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.primary
-                              ),
-
-                            ),
-                          )
-                      ),
-                      Container(
-                        child: Form(
-                          key: keyForm,
-                          child: formUI(),
-                        ),
-                      ),
-                      Container(
-                        height: (size.height * 0.10),
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: const Text(
-                          "Already have a account? Login here",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Montserrat",
-                            color: AppColors.inputLabels,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //Contiene el Texto central
+                    SizedBox(
+                        height: (size.height * 0.09),
+                        child: const Center(
+                          child: Text(
+                            "Create Account",
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
+                        )),
+                    Container(
+                      child: Form(
+                        key: keyForm,
+                        child: formUI(),
                       ),
-
-                    ],
-                  ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: const Text(
+                        "Already have a account? Login here",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "Montserrat",
+                          color: AppColors.inputLabels,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
+              ),
             ),
           ],
-        )
-    );
+        ));
   }
 
   Widget formUI() {
     final Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
-      height: (size.height * 0.37),
+      height: (size.height * 0.40),
+      //color: Colors.red,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Container(
-            height: (size.height * 0.07),
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50.0),
-              color: AppColors.inputBackground,
+          TextFormField(
+            controller: emailCtrl,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50.0),
+                borderSide: BorderSide.none,
+              ),
+              hintText: "Enter your email",
+              suffixIcon: const Icon(
+                Icons.mail,
+                color: AppColors.inputIconColor,
+              ),
+              fillColor: AppColors.inputBackground,
+              filled: true,
             ),
-            child:  Center(
-              child: TextFormField(
-                controller: emailCtrl,
-                decoration: const InputDecoration(
-                  border: InputBorder.none ,
-                  hintText: "Enter your email",
-                  suffixIcon: Icon(Icons.mail,color: AppColors.inputIconColor,),
+            keyboardType: TextInputType.emailAddress,
+            validator: (value) {
+              String pattern =
+                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regExp = RegExp(pattern);
+              if (value?.length == 0) {
+                return "El correo es necesario";
+              } else if (!regExp.hasMatch(value!)) {
+                return "Correo invalido";
+              } else {
+                return null;
+              }
+            },
+          ),
+          TextFormField(
+            controller: nameCtrl,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50.0),
+                borderSide: BorderSide.none,
+              ),
+              hintText: "Enter your username",
+              suffixIcon: const Icon(
+                Icons.person,
+                color: AppColors.inputIconColor,
+              ),
+              fillColor: AppColors.inputBackground,
+             filled: true,
+            ),
+            validator: (value) {
+              String pattern = r'(^[a-zA-Z ]*$)';
+              RegExp regExp = RegExp(pattern);
+              if (value?.length == 0) {
+                return "El nombre es necesario";
+              } else if (!regExp.hasMatch(value!)) {
+                return "El nombre debe de ser a-z y A-Z";
+              }
+            },
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            controller: passwordCtrl,
+            obscureText: !_obscureText,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50.0),
+                borderSide: BorderSide.none,
+              ),
+              hintText: 'Enter your password',
+              // Here is key idea
+              suffixIcon: IconButton(
+                icon: Icon(
+                  // Based on passwordVisible state choose the icon
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                  color: AppColors.inputIconColor,
                 ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  String pattern =
-                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                  RegExp regExp = RegExp(pattern);
-                  if (value?.length == 0) {
-                    return "El correo es necesario";
-                  } else if (!regExp.hasMatch(value!)) {
-                    return "Correo invalido";
-                  } else {
-                    return null;
-                  }
+
+                onPressed: () {
+                  // Update the state i.e. toogle the state of passwordVisible variable
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
                 },
               ),
+              fillColor: AppColors.inputBackground,
+              filled: true,
             ),
-          ),
-          Container(
-            height: (size.height * 0.07),
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50.0),
-              color: AppColors.inputBackground,
-            ),
-            child:  Center(
-              child: TextFormField(
-                controller: nameCtrl,
-                decoration: const InputDecoration(
-                  border: InputBorder.none ,
-                  hintText: "Enter your username",
-                  suffixIcon: Icon(Icons.person,color: AppColors.inputIconColor,),
-                ),
-                validator: (value) {
-                  String pattern = r'(^[a-zA-Z ]*$)';
-                  RegExp regExp = RegExp(pattern);
-                  if (value?.length == 0) {
-                    return "El nombre es necesario";
-                  } else if (!regExp.hasMatch(value!)) {
-                    return "El nombre debe de ser a-z y A-Z";
-                  }
-                },
-              ),
-            ),
-          ),
-          Container(
-            height: (size.height * 0.07),
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50.0),
-              color: AppColors.inputBackground,
-            ),
-            child:  Center(
-              child: TextFormField(
-                keyboardType: TextInputType.text,
-                controller: passwordCtrl,
-                obscureText: !_obscureText,//This will ob
-                decoration: InputDecoration(
-                  border: InputBorder.none ,
-                  hintText: 'Enter your password',
-                  // Here is key idea
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      // Based on passwordVisible state choose the icon
-                      _obscureText
-                          ? Icons.visibility : Icons.visibility_off,
-                      color: AppColors.inputIconColor,
-                    ),
-                    onPressed: () {
-                      // Update the state i.e. toogle the state of passwordVisible variable
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                  ),
-                ),
-                validator: (val) => val!.length < 6 ? 'Password too short.' : null,
-              ),
-            ),
+            validator: (val) =>
+            val!.length < 6 ? 'Password too short.' : null,
           ),
           Container(
             child: ButtonPrimary(
               text: "Sign Up",
-              onPressed: (){
+              onPressed: () {
                 save();
               },
               height: (size.height * 0.075),
@@ -235,7 +220,7 @@ class _RegisterState extends State<Register> {
             ),
           )
         ],
-      ) ,
+      ),
     );
   }
 
@@ -245,8 +230,6 @@ class _RegisterState extends State<Register> {
       print("Pas ${passwordCtrl.text}");
       print("Correo ${emailCtrl.text}");
       keyForm.currentState?.reset();
-
     }
   }
-
 }
