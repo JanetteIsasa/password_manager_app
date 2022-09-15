@@ -88,25 +88,44 @@ class _RegisterState extends State<Register> {
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.primary),
                           ),
-                        )),
+                        )
+                    ),
+
+                    //Contiene el formulario
                     Container(
                       child: Form(
                         key: keyForm,
                         child: formUI(),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: const Text(
-                        "Already have a account? Login here",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: "Montserrat",
-                          color: AppColors.inputLabels,
+
+                    //Text y Text Button
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          "Already have a account? ",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Montserrat",
+                            color: AppColors.inputLabels,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                        TextButton(
+                            onPressed: null,
+                            child: Text(
+                              'Login here',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontSize: 16,
+                                fontFamily: "Montserrat",
+                              ),
+                            )
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -229,7 +248,11 @@ class _RegisterState extends State<Register> {
       print("Nombre ${nameCtrl.text}");
       print("Pas ${passwordCtrl.text}");
       print("Correo ${emailCtrl.text}");
-      keyForm.currentState?.reset();
+
+      setState(() {
+        emailCtrl.text= "";
+      });
+
     }
   }
 }
