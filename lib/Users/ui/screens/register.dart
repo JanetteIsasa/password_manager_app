@@ -245,12 +245,14 @@ class _RegisterState extends State<Register> {
 
   save() {
     if (keyForm.currentState!.validate()) {
-      print("Nombre ${nameCtrl.text}");
-      print("Pas ${passwordCtrl.text}");
-      print("Correo ${emailCtrl.text}");
+      //print("Nombre ${nameCtrl.text}");
+      //print("Pas ${passwordCtrl.text}");
+      //print("Correo ${emailCtrl.text}");
 
       setState(() {
         emailCtrl.text= "";
+        nameCtrl.text="";
+        passwordCtrl.text="";
       });
 
     }
