@@ -108,7 +108,8 @@ class _RegisterState extends State<Register> {
                           style: TextStyle(
                             fontSize: 16,
                             fontFamily: "Montserrat",
-                            color: AppColors.inputLabels,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromRGBO(200, 203, 206, 1),
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -118,9 +119,10 @@ class _RegisterState extends State<Register> {
                               'Login here',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: AppColors.primary,
+                                color: Color.fromRGBO(56, 117, 211, 1),
                                 fontSize: 16,
                                 fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w600,
                               ),
                             )
                         ),
@@ -137,23 +139,29 @@ class _RegisterState extends State<Register> {
   Widget formUI() {
     final Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40),
+      margin: const EdgeInsets.symmetric(horizontal: 40),
       height: (size.height * 0.40),
       //color: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
+          //Email
           TextFormField(
             controller: emailCtrl,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50.0),
                 borderSide: BorderSide.none,
               ),
               hintText: "Enter your email",
-              suffixIcon: const Icon(
+              suffixIcon: const IconButton(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  onPressed: null,
+                  icon: Icon(
                 Icons.mail,
                 color: AppColors.inputIconColor,
+              )
               ),
               fillColor: AppColors.inputBackground,
               filled: true,
@@ -172,17 +180,23 @@ class _RegisterState extends State<Register> {
               }
             },
           ),
+          //User
           TextFormField(
             controller: nameCtrl,
             decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50.0),
                 borderSide: BorderSide.none,
               ),
               hintText: "Enter your username",
-              suffixIcon: const Icon(
-                Icons.person,
-                color: AppColors.inputIconColor,
+              suffixIcon: const IconButton(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.person,
+                    color: AppColors.inputIconColor,
+                  )
               ),
               fillColor: AppColors.inputBackground,
              filled: true,
@@ -197,11 +211,13 @@ class _RegisterState extends State<Register> {
               }
             },
           ),
+          //Password
           TextFormField(
             keyboardType: TextInputType.text,
             controller: passwordCtrl,
             obscureText: !_obscureText,
             decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50.0),
                 borderSide: BorderSide.none,
@@ -209,12 +225,12 @@ class _RegisterState extends State<Register> {
               hintText: 'Enter your password',
               // Here is key idea
               suffixIcon: IconButton(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 icon: Icon(
                   // Based on passwordVisible state choose the icon
                   _obscureText ? Icons.visibility : Icons.visibility_off,
                   color: AppColors.inputIconColor,
                 ),
-
                 onPressed: () {
                   // Update the state i.e. toogle the state of passwordVisible variable
                   setState(() {
@@ -228,15 +244,13 @@ class _RegisterState extends State<Register> {
             validator: (val) =>
             val!.length < 6 ? 'Password too short.' : null,
           ),
-          Container(
-            child: ButtonPrimary(
-              text: "Sign Up",
-              onPressed: () {
-                save();
-              },
-              height: (size.height * 0.075),
-              width: double.infinity,
-            ),
+          ButtonPrimary(
+            text: "Sign Up",
+            onPressed: () {
+              save();
+            },
+            height: (size.height * 0.075),
+            width: double.infinity,
           )
         ],
       ),
