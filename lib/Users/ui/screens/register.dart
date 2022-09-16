@@ -64,8 +64,8 @@ class _RegisterState extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     //Contiene el Texto central
-                    SizedBox(
-                        height: (size.height * 0.09),
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical:  size.height * 0.03),
                         child: const Center(
                           child: Text(
                             "Create Account",
@@ -164,80 +164,8 @@ class _RegisterState extends State<Register> {
               }
             },
           ),
-          //User
-          TextFormField(
-            controller: nameCtrl,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(50.0),
-                borderSide: BorderSide.none,
-              ),
-              hintText: "Enter your username",
-              suffixIcon: const IconButton(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  onPressed: null,
-                  icon: Icon(
-                    Icons.person,
-                    color: AppColors.inputIconColor,
-                  )),
-              fillColor: AppColors.inputBackground,
-              filled: true,
-            ),
-            validator: (value) {
-              String pattern = r'(^[a-zA-Z ]*$)';
-              RegExp regExp = RegExp(pattern);
-              if (value?.length == 0) {
-                return "Name is required";
-              } else if (!regExp.hasMatch(value!)) {
-                return "The name must be a-z and A-Z";
-              }
-            },
-          ),
-          //Password
-          TextFormField(
-            keyboardType: TextInputType.text,
-            controller: passwordCtrl,
-            obscureText: !_obscureText,
-            //maxLength: 20,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(50.0),
-                borderSide: BorderSide.none,
-              ),
-              hintText: 'Enter your password',
-              // Here is key idea
-              suffixIcon: IconButton(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                icon: Icon(
-                  // Based on passwordVisible state choose the icon
-                  _obscureText ? Icons.visibility : Icons.visibility_off,
-                  color: AppColors.inputIconColor,
-                ),
-                onPressed: () {
-                  // Update the state i.e. toogle the state of passwordVisible variable
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              ),
-              fillColor: AppColors.inputBackground,
-              filled: true,
-            ),
-            validator: (value) {
-              String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{8,20}";
-              RegExp regExp = RegExp(pattern);
-              if (value!.length < 8) {
-                return "Password too short.";
-              } else if (!regExp.hasMatch(value!)) {
-                return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
-              } else {
-                return null;
-              }
-
-            }
-          ),
+          inputUser(),
+          inputPassword(),
           ButtonPrimary(
             text: "Sign Up",
             onPressed: () {
@@ -250,6 +178,83 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
+
+ Widget inputPassword(){
+    return TextFormField(
+        keyboardType: TextInputType.text,
+        controller: passwordCtrl,
+        obscureText: !_obscureText,
+        //maxLength: 20,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50.0),
+            borderSide: BorderSide.none,
+          ),
+          hintText: 'Enter your password',
+          // Here is key idea
+          suffixIcon: IconButton(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            icon: Icon(
+              // Based on passwordVisible state choose the icon
+              _obscureText ? Icons.visibility : Icons.visibility_off,
+              color: AppColors.inputIconColor,
+            ),
+            onPressed: () {
+              // Update the state i.e. toogle the state of passwordVisible variable
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+          ),
+          fillColor: AppColors.inputBackground,
+          filled: true,
+        ),
+        validator: (value) {
+          String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{8,20}";
+          RegExp regExp = RegExp(pattern);
+          if (value!.length < 8) {
+            return "Password too short.";
+          } else if (!regExp.hasMatch(value!)) {
+            return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
+          } else {
+            return null;
+          }
+
+        }
+    );
+ }
+ Widget inputUser(){
+    return TextFormField(
+      controller: nameCtrl,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: BorderSide.none,
+        ),
+        hintText: "Enter your username",
+        suffixIcon: const IconButton(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            onPressed: null,
+            icon: Icon(
+              Icons.person,
+              color: AppColors.inputIconColor,
+            )),
+        fillColor: AppColors.inputBackground,
+        filled: true,
+      ),
+      validator: (value) {
+        String pattern = r'(^[a-zA-Z ]*$)';
+        RegExp regExp = RegExp(pattern);
+        if (value?.length == 0) {
+          return "Name is required";
+        } else if (!regExp.hasMatch(value!)) {
+          return "The name must be a-z and A-Z";
+        }
+      },
+    );
+ }
 
   save() {
     if (keyForm.currentState!.validate()) {
