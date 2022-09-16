@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_appBar.dart';
+import '../../../widgets/arrow_button.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -41,24 +42,8 @@ class _RegisterState extends State<Register> {
           //toolbarHeight: (size.height * 0.09),
           backgroundColor: AppColors.primary,
           elevation: 0,
-          leading: InkResponse(
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-              padding: const EdgeInsets.only(left: 10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: AppColors.menuBackground),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-                size: 24,
-              ),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          title: TextAppBar("11Pass"),
+          leading: const ArrowButton(),
+          title: TextAppBar("11Pass",),
           centerTitle: true,
         ),
         body: Column(
@@ -214,7 +199,7 @@ class _RegisterState extends State<Register> {
             keyboardType: TextInputType.text,
             controller: passwordCtrl,
             obscureText: !_obscureText,
-            maxLength: 20,
+            //maxLength: 20,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
               border: OutlineInputBorder(
