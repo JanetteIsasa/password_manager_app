@@ -19,6 +19,8 @@ class _RegisterState extends State<Register> {
   TextEditingController emailCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
 
+
+
   // Initially password is obscure
   bool _obscureText = true;
 
@@ -67,9 +69,9 @@ class _RegisterState extends State<Register> {
                 painter: CustomPainter2(),
               ),
               Positioned(
-                top: 10,
-                child: Lottie.asset("assets/lottie/registration.json", height: 200)
-              )
+                  top: 10,
+                  child: Lottie.asset("assets/lottie/registration.json",
+                      height: 200, repeat: false))
             ]),
             Expanded(
               child: SingleChildScrollView(
@@ -88,8 +90,7 @@ class _RegisterState extends State<Register> {
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.primary),
                           ),
-                        )
-                    ),
+                        )),
 
                     //Contiene el formulario
                     Container(
@@ -124,8 +125,7 @@ class _RegisterState extends State<Register> {
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w600,
                               ),
-                            )
-                        ),
+                            )),
                       ],
                     )
                   ],
@@ -159,10 +159,9 @@ class _RegisterState extends State<Register> {
                   padding: EdgeInsets.symmetric(horizontal: 30.0),
                   onPressed: null,
                   icon: Icon(
-                Icons.mail,
-                color: AppColors.inputIconColor,
-              )
-              ),
+                    Icons.mail,
+                    color: AppColors.inputIconColor,
+                  )),
               fillColor: AppColors.inputBackground,
               filled: true,
             ),
@@ -172,9 +171,9 @@ class _RegisterState extends State<Register> {
                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
               RegExp regExp = RegExp(pattern);
               if (value?.length == 0) {
-                return "El correo es necesario";
+                return "Mail is necessary";
               } else if (!regExp.hasMatch(value!)) {
-                return "Correo invalido";
+                return "Invalid email";
               } else {
                 return null;
               }
@@ -196,18 +195,17 @@ class _RegisterState extends State<Register> {
                   icon: Icon(
                     Icons.person,
                     color: AppColors.inputIconColor,
-                  )
-              ),
+                  )),
               fillColor: AppColors.inputBackground,
-             filled: true,
+              filled: true,
             ),
             validator: (value) {
               String pattern = r'(^[a-zA-Z ]*$)';
               RegExp regExp = RegExp(pattern);
               if (value?.length == 0) {
-                return "El nombre es necesario";
+                return "Name is required";
               } else if (!regExp.hasMatch(value!)) {
-                return "El nombre debe de ser a-z y A-Z";
+                return "The name must be a-z and A-Z";
               }
             },
           ),
@@ -216,6 +214,7 @@ class _RegisterState extends State<Register> {
             keyboardType: TextInputType.text,
             controller: passwordCtrl,
             obscureText: !_obscureText,
+            maxLength: 20,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
               border: OutlineInputBorder(
@@ -241,8 +240,18 @@ class _RegisterState extends State<Register> {
               fillColor: AppColors.inputBackground,
               filled: true,
             ),
-            validator: (val) =>
-            val!.length < 6 ? 'Password too short.' : null,
+            validator: (value) {
+              String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{8,20}";
+              RegExp regExp = RegExp(pattern);
+              if (value!.length < 8) {
+                return "Password too short.";
+              } else if (!regExp.hasMatch(value!)) {
+                return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
+              } else {
+                return null;
+              }
+
+            }
           ),
           ButtonPrimary(
             text: "Sign Up",
@@ -264,11 +273,10 @@ class _RegisterState extends State<Register> {
       //print("Correo ${emailCtrl.text}");
 
       setState(() {
-        emailCtrl.text= "";
-        nameCtrl.text="";
-        passwordCtrl.text="";
+        emailCtrl.text = "";
+        nameCtrl.text = "";
+        passwordCtrl.text = "";
       });
-
     }
   }
 }
