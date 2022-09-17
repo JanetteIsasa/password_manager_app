@@ -86,9 +86,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
 
-                    //Text y Text Button
-                    TextAndTextButton("Already have a account? ", pruebaButton, 'Login here', ),
-                  ],
+                   ],
                 ),
               ),
             ),
@@ -100,45 +98,11 @@ class _RegisterState extends State<Register> {
     final Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
-      height: (size.height * 0.40),
-      //color: Colors.red,
+      height: (size.height * 0.50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          //Email
-          TextFormField(
-            controller: emailCtrl,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(50.0),
-                borderSide: BorderSide.none,
-              ),
-              hintText: "Enter your email",
-              suffixIcon: const IconButton(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  onPressed: null,
-                  icon: Icon(
-                    Icons.mail,
-                    color: AppColors.inputIconColor,
-                  )),
-              fillColor: AppColors.inputBackground,
-              filled: true,
-            ),
-            keyboardType: TextInputType.emailAddress,
-            validator: (value) {
-              String pattern =
-                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-              RegExp regExp = RegExp(pattern);
-              if (value?.length == 0) {
-                return "Mail is necessary";
-              } else if (!regExp.hasMatch(value!)) {
-                return "Invalid email";
-              } else {
-                return null;
-              }
-            },
-          ),
+          inputEmail(),
           inputUser(),
           inputPassword(),
           ButtonPrimary(
@@ -148,7 +112,9 @@ class _RegisterState extends State<Register> {
             },
             height: (size.height * 0.075),
             width: double.infinity,
-          )
+          ),
+          //Text y Text Button
+          TextAndTextButton("Already have a account? ", pruebaButton, 'Login here', ),
         ],
       ),
     );
@@ -226,6 +192,40 @@ class _RegisterState extends State<Register> {
           return "Name is required";
         } else if (!regExp.hasMatch(value!)) {
           return "The name must be a-z and A-Z";
+        }
+      },
+    );
+ }
+ Widget inputEmail(){
+    return TextFormField(
+      controller: emailCtrl,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: BorderSide.none,
+        ),
+        hintText: "Enter your email",
+        suffixIcon: const IconButton(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            onPressed: null,
+            icon: Icon(
+              Icons.mail,
+              color: AppColors.inputIconColor,
+            )),
+        fillColor: AppColors.inputBackground,
+        filled: true,
+      ),
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+        RegExp regExp = RegExp(pattern);
+        if (value?.length == 0) {
+          return "Mail is necessary";
+        } else if (!regExp.hasMatch(value!)) {
+          return "Invalid email";
+        } else {
+          return null;
         }
       },
     );
