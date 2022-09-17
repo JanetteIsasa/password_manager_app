@@ -6,6 +6,7 @@ import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_appBar.dart';
 import '../../../widgets/arrow_button.dart';
+import '../widgets/text_and_tbutton.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -86,33 +87,7 @@ class _RegisterState extends State<Register> {
                     ),
 
                     //Text y Text Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          "Already have a account? ",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(200, 203, 206, 1),
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        TextButton(
-                            onPressed: null,
-                            child: Text(
-                              'Login here',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color.fromRGBO(56, 117, 211, 1),
-                                fontSize: 16,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )),
-                      ],
-                    )
+                    TextAndTextButton("Already have a account? ", pruebaButton, 'Login here', ),
                   ],
                 ),
               ),
@@ -258,15 +233,15 @@ class _RegisterState extends State<Register> {
 
   save() {
     if (keyForm.currentState!.validate()) {
-      //print("Nombre ${nameCtrl.text}");
-      //print("Pas ${passwordCtrl.text}");
-      //print("Correo ${emailCtrl.text}");
-
       setState(() {
         emailCtrl.text = "";
         nameCtrl.text = "";
         passwordCtrl.text = "";
       });
     }
+  }
+
+  pruebaButton(){
+    null;
   }
 }
