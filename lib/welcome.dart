@@ -195,7 +195,7 @@ class Welcome extends StatelessWidget {
               child: title,
             ),
           ),
-          Lottie.asset("assets/lottie/data-security.json", height: 210),
+          Lottie.asset("assets/lottie/data-security.json", height: 200),
           descripcionText,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
