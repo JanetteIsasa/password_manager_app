@@ -57,7 +57,7 @@ class _RegisterState extends State<Register> {
               Positioned(
                   top: 10,
                   child: Lottie.asset("assets/lottie/registration.json",
-                      height: 200, repeat: false))
+                      height: 220, repeat: false))
             ]),
             Expanded(
               child: SingleChildScrollView(
