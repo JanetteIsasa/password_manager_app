@@ -6,6 +6,7 @@ import 'Users/ui/screens/register.dart';
 import 'widgets/app_colors.dart';
 
 class Welcome extends StatelessWidget {
+  //botones encendidos
   final buttonPageOn = Container(
     margin: EdgeInsets.only(right: 5.0, left: 5.0),
     width: 5,
@@ -16,6 +17,7 @@ class Welcome extends StatelessWidget {
     ),
   );
 
+  //botones apagados
   final buttonPageOf = Container(
     margin: EdgeInsets.only(right: 5.0, left: 5.0),
     width: 5,
@@ -37,7 +39,7 @@ class Welcome extends StatelessWidget {
       body: SafeArea(
         child: Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: PageView(
@@ -179,7 +181,7 @@ class Welcome extends StatelessWidget {
           color: Colors.white),
     );
     const descripcionText = Text(
-      "If you do not remember your password you can check it by entering your trunk and your account. You only have to remember a single password that is that of this application",
+      "If you do not remember your password you can check it by entering your trunk and your account.",
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 18.0,
@@ -200,7 +202,7 @@ class Welcome extends StatelessWidget {
               child: title,
             ),
           ),
-          Lottie.asset("assets/lottie/forgot-password.json", height: 150),
+          Lottie.asset("assets/lottie/password-lock.json", height: 200),
           Container(
             height: 120,
             child: descripcionText,
