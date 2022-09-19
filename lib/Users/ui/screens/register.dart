@@ -94,6 +94,7 @@ class _RegisterState extends State<Register> {
         ));
   }
 
+  //contiene la estructura del formulario
   Widget formUI() {
     final Size size = MediaQuery.of(context).size;
     return Container(
@@ -102,9 +103,12 @@ class _RegisterState extends State<Register> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
+          //contiene los inputs
           inputEmail(),
           inputUser(),
           inputPassword(),
+
+          //Botón submit
           ButtonPrimary(
             text: "Sign Up",
             onPressed: () {
@@ -113,6 +117,7 @@ class _RegisterState extends State<Register> {
             height: (size.height * 0.075),
             width: double.infinity,
           ),
+
           //Text y Text Button
           TextAndTextButton("Already have a account? ", pruebaButton, 'Login here', ),
         ],
@@ -120,6 +125,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  //input personalizados
  Widget inputPassword(){
     return TextFormField(
         keyboardType: TextInputType.text,
@@ -231,6 +237,7 @@ class _RegisterState extends State<Register> {
     );
  }
 
+ //acción a realizar una vez oprimido el botón Sing Up
   save() {
     if (keyForm.currentState!.validate()) {
       setState(() {
@@ -241,6 +248,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  //debería contener el on pressed de Login here
   pruebaButton(){
     null;
   }
