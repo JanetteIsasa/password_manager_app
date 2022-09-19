@@ -189,10 +189,9 @@ class Welcome extends StatelessWidget {
         fontWeight: FontWeight.w500,
       ),
     );
-    return Container(
+    return Expanded(child:  Container(
       padding: EdgeInsets.all(25),
       width: double.infinity,
-      height: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -202,7 +201,7 @@ class Welcome extends StatelessWidget {
               child: title,
             ),
           ),
-          Lottie.asset("assets/lottie/password-lock.json", height: 200),
+          Lottie.asset("assets/lottie/data-security.json", height: 200),
           Container(
             height: 120,
             child: descripcionText,
@@ -217,6 +216,6 @@ class Welcome extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 }
