@@ -6,7 +6,7 @@ class TextAndTextButton extends StatefulWidget {
   final String titleTextButton;
   final VoidCallback onPressed;
 
-  TextAndTextButton( this.titleText, this.onPressed, this.titleTextButton, );
+  const TextAndTextButton( this.titleText, this.onPressed, this.titleTextButton, {Key? key} ) : super(key: key);
 
   @override
   State<TextAndTextButton> createState() => _TextAndTextButtonState();

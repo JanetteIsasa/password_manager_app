@@ -1,14 +1,13 @@
 import 'package:elevenpass/widgets/customs/custom_welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:ui' as ui;
 import 'Users/ui/screens/register.dart';
 import 'widgets/app_colors.dart';
 
 class Welcome extends StatelessWidget {
   //botones encendidos
   final buttonPageOn = Container(
-    margin: EdgeInsets.only(right: 5.0, left: 5.0),
+    margin: const EdgeInsets.only(right: 5.0, left: 5.0),
     width: 5,
     height: 5,
     decoration: BoxDecoration(
@@ -19,7 +18,7 @@ class Welcome extends StatelessWidget {
 
   //botones apagados
   final buttonPageOf = Container(
-    margin: EdgeInsets.only(right: 5.0, left: 5.0),
+    margin: const EdgeInsets.only(right: 5.0, left: 5.0),
     width: 5,
     height: 5,
     decoration: BoxDecoration(
@@ -57,7 +56,7 @@ class Welcome extends StatelessWidget {
                   size: Size(double.infinity, size.height),
                   painter: CustomWelcome(),
                   child: Container(
-                      margin: EdgeInsets.only(top: 20.0),
+                      margin: const EdgeInsets.only(top: 20.0),
                       child: Center(
                         child: TextButton(
                             onPressed: () => Navigator.of(context).push(
@@ -100,23 +99,20 @@ class Welcome extends StatelessWidget {
     );
 
     return Container(
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       width: double.infinity,
       height: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
+          const SizedBox(
             height: 60,
-            child: const Center(
+            child: Center(
               child: title,
             ),
           ),
-          Lottie.asset("assets/lottie/security-pay.json", height: 200),
-          Container(
-            height: 120,
-            child: descripcionText,
-          ),
+          Lottie.asset("assets/lottie/security-pay.json", height: 210),
+          descripcionText,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [buttonPageOn, buttonPageOf, buttonPageOf],
@@ -145,23 +141,20 @@ class Welcome extends StatelessWidget {
       ),
     );
     return Container(
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       width: double.infinity,
       height: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
+          const SizedBox(
             height: 60,
-            child: const Center(
+            child: Center(
               child: title,
             ),
           ),
-          Lottie.asset("assets/lottie/96833-login.json", height: 250),
-          Container(
-            height: 120,
-            child: descripcionText,
-          ),
+          Lottie.asset("assets/lottie/96833-login.json", height: 210),
+          descripcionText,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [buttonPageOf, buttonPageOn, buttonPageOf],
@@ -189,29 +182,25 @@ class Welcome extends StatelessWidget {
         fontWeight: FontWeight.w500,
       ),
     );
-    return Expanded(child:  Container(
-      padding: EdgeInsets.all(25),
+    return Expanded(child:
+    Container(
+      padding: const EdgeInsets.all(25),
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
+          const SizedBox(
             height: 60,
-            child: const Center(
+            child: Center(
               child: title,
             ),
           ),
-          Lottie.asset("assets/lottie/data-security.json", height: 200),
-          Container(
-            height: 120,
-            child: descripcionText,
-          ),
+          Lottie.asset("assets/lottie/data-security.json", height: 210),
+          descripcionText,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buttonPageOf,
-              buttonPageOf,
-              buttonPageOn,
+              buttonPageOf, buttonPageOf, buttonPageOn,
             ],
           )
         ],

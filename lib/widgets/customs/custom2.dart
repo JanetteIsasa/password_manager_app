@@ -1,6 +1,5 @@
 import 'package:elevenpass/widgets/app_colors.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:ui' as ui;
 
 class CustomPainter2 extends CustomPainter{
 

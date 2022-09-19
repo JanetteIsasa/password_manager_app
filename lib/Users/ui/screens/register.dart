@@ -1,10 +1,11 @@
+// ignore_for_file: prefer_is_empty
+
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:ui' as ui;
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
-import '../../../widgets/text_appBar.dart';
+import '../../../widgets/text_app_bar.dart';
 import '../../../widgets/arrow_button.dart';
 import '../widgets/text_and_tbutton.dart';
 
@@ -27,11 +28,6 @@ class _RegisterState extends State<Register> {
   bool _obscureText = true;
 
   // Toggles the password show status
-  void _toggle() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +40,7 @@ class _RegisterState extends State<Register> {
           backgroundColor: AppColors.primary,
           elevation: 0,
           leading: const ArrowButton(),
-          title: TextAppBar("11Pass",),
+          title: const TextAppBar("11Pass",),
           centerTitle: true,
         ),
         body: Column(
@@ -79,11 +75,9 @@ class _RegisterState extends State<Register> {
                         )),
 
                     //Contiene el formulario
-                    Container(
-                      child: Form(
-                        key: keyForm,
-                        child: formUI(),
-                      ),
+                    Form(
+                      key: keyForm,
+                      child: formUI(),
                     ),
 
                    ],
@@ -133,7 +127,7 @@ class _RegisterState extends State<Register> {
         obscureText: !_obscureText,
         //maxLength: 20,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+          contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50.0),
             borderSide: BorderSide.none,
@@ -162,7 +156,7 @@ class _RegisterState extends State<Register> {
           RegExp regExp = RegExp(pattern);
           if (value!.length < 8) {
             return "Password too short.";
-          } else if (!regExp.hasMatch(value!)) {
+          } else if (!regExp.hasMatch(value)) {
             return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
           } else {
             return null;
@@ -175,7 +169,7 @@ class _RegisterState extends State<Register> {
     return TextFormField(
       controller: nameCtrl,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+        contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50.0),
           borderSide: BorderSide.none,
@@ -199,6 +193,7 @@ class _RegisterState extends State<Register> {
         } else if (!regExp.hasMatch(value!)) {
           return "The name must be a-z and A-Z";
         }
+        return null;
       },
     );
  }

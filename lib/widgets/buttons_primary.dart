@@ -1,6 +1,7 @@
 import 'package:elevenpass/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ButtonPrimary extends StatefulWidget {
 
   final String text;
