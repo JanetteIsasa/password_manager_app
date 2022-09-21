@@ -15,7 +15,7 @@ class TutorialOverlay extends ModalRoute<void> {
   bool get barrierDismissible => false;
 
   @override
-  Color get barrierColor => Colors.black.withOpacity(0.5);
+  Color get barrierColor => Colors.black.withOpacity(0.7);
 
   @override
   Null get barrierLabel => null;
@@ -48,7 +48,7 @@ class TutorialOverlay extends ModalRoute<void> {
           Container(
             height: (size.height * 0.45),
             width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: 30.0),
+            margin: EdgeInsets.symmetric(horizontal: 40.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
               color: Colors.white,
@@ -64,7 +64,6 @@ class TutorialOverlay extends ModalRoute<void> {
                     fontWeight: FontWeight.w600,
                     color: AppColors.primary,
                   ),
-                  
                 ),
                 const Text(
                   'Your account have been created successfully',
@@ -77,24 +76,34 @@ class TutorialOverlay extends ModalRoute<void> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-
                 ElevatedButton(
-                  child: const Text('Start Exploring'),
                   onPressed: () {
-                    print("Button pressed");
+                    //print("Button pressed");
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                       primary: AppColors.primary,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           fontFamily: 'Montserrat',
                       ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                  ),
+                  child: Container(
+                    width: 180,
+                    child: Row(
+
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+
+                        Text('Start Exploring'),
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -120,8 +129,8 @@ class TutorialOverlay extends ModalRoute<void> {
 
 
 
-class TestPage extends StatelessWidget {
-  const TestPage({Key? key}) : super(key: key);
+class ModalSuccess extends StatelessWidget {
+  const ModalSuccess({Key? key}) : super(key: key);
 
   void _showOverlay(BuildContext context) {
     Navigator.of(context).push(TutorialOverlay());
@@ -129,20 +138,8 @@ class TestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Test')),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Center(
-          child: RaisedButton(
-            onPressed: () => _showOverlay(context),
-            child: Container(
-              child: Text('Button')
-
-            ),
-          ),
-        ),
-      ),
+    return RaisedButton(
+      onPressed: () => _showOverlay(context),
     );
   }
 }

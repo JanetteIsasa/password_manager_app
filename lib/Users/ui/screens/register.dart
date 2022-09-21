@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_is_empty
 
+import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -11,6 +12,7 @@ import '../widgets/text_and_tbutton.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
+
 
   @override
   State<Register> createState() => _RegisterState();
@@ -90,6 +92,7 @@ class _RegisterState extends State<Register> {
 
   //contiene la estructura del formulario
   Widget formUI() {
+
     final Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
@@ -234,11 +237,17 @@ class _RegisterState extends State<Register> {
 
  //acción a realizar una vez oprimido el botón Sing Up
   save() {
+    void _showOverlay(BuildContext context) {
+      Navigator.of(context).push(TutorialOverlay());
+    }
+
     if (keyForm.currentState!.validate()) {
       setState(() {
         emailCtrl.text = "";
         nameCtrl.text = "";
         passwordCtrl.text = "";
+        _showOverlay(context);
+        const ModalSuccess();
       });
     }
   }
