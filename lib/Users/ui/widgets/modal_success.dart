@@ -46,9 +46,9 @@ class TutorialOverlay extends ModalRoute<void> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            height: (size.height * 0.50),
+            height: (size.height * 0.45),
             width: double.infinity,
-            margin: EdgeInsets.all(30.0),
+            margin: EdgeInsets.symmetric(horizontal: 30.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
               color: Colors.white,
@@ -79,36 +79,22 @@ class TutorialOverlay extends ModalRoute<void> {
                 ),
 
                 ElevatedButton(
+                  child: const Text('Start Exploring'),
                   onPressed: () {
                     print("Button pressed");
+                    Navigator.pop(context);
                   },
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          // Change your radius here
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                    ),
-                    ),
-                  child: const Text(
-                    "Start Exploring",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        fontFamily: 'Montserrat'
-                    ),
+                  style: ElevatedButton.styleFrom(
+                      primary: AppColors.primary,
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                      textStyle: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          fontFamily: 'Montserrat',
+                      ),
                   ),
+                ),
 
-                ),
-                const Text(
-                  'This is a nice overlay',
-                  style: TextStyle(color: Colors.white, fontSize: 30.0),
-                ),
-                RaisedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('Dismiss'),
-                )
               ],
             ),
           ),
