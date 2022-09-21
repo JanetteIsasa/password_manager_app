@@ -6,7 +6,7 @@ import '../../../widgets/app_colors.dart';
 
 class TutorialOverlay extends ModalRoute<void> {
   @override
-  Duration get transitionDuration => Duration(milliseconds: 500);
+  Duration get transitionDuration => const Duration(milliseconds: 500);
 
   @override
   bool get opaque => false;
@@ -39,56 +39,64 @@ class TutorialOverlay extends ModalRoute<void> {
     );
   }
 
+  //widget que se activa al presionar el botón
+
   Widget _buildOverlayContent(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+
+          //contenedor del modal
           Container(
             height: (size.height * 0.45),
             width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: 40.0),
+            margin: const EdgeInsets.symmetric(horizontal: 40.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
               color: Colors.white,
             ),
+
+            //elementos dentro
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+
+                //imagen de Lottie
                 Lottie.asset("assets/lottie/success.json", height: 105, repeat: false),
-                Container(
-                  child: Column(
-                    children: const [
-                      Text('Great!',
-                        style: TextStyle(
+
+                //Texto central y descripción
+                Column(
+                  children: const [
+                    Text('Great!',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 32,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      'Your account have been created successfully',
+                      style: TextStyle(
                           fontFamily: 'Montserrat',
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primary,
-                        ),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          // color: AppColors.inputLabels,
+                          color: Color.fromRGBO(0, 0, 0, 0.55)
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        'Your account have been created successfully',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            // color: AppColors.inputLabels,
-                            color: Color.fromRGBO(0, 0, 0, 0.55)
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
 
+                //botón que le redirige al home
                 ElevatedButton(
                   onPressed: () {
-                    //print("Button pressed");
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
@@ -101,13 +109,11 @@ class TutorialOverlay extends ModalRoute<void> {
                       ),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                   ),
-                  child: Container(
+                  child: SizedBox(
                     width: 180,
                     child: Row(
-
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
-
                         Text('Start Exploring'),
                         Icon(Icons.arrow_forward),
                       ],
@@ -117,12 +123,12 @@ class TutorialOverlay extends ModalRoute<void> {
               ],
             ),
           ),
-
         ],
       ),
     );
   }
 
+  //la transición que va a realizar al activar
   @override
   Widget buildTransitions(
       BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
@@ -137,8 +143,7 @@ class TutorialOverlay extends ModalRoute<void> {
   }
 }
 
-
-
+//clase que debemos llamar para usar en register()
 class ModalSuccess extends StatelessWidget {
   const ModalSuccess({Key? key}) : super(key: key);
 
