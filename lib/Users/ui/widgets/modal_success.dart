@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../../widgets/app_colors.dart';
 
 class TutorialOverlay extends ModalRoute<void> {
   @override
@@ -14,7 +18,7 @@ class TutorialOverlay extends ModalRoute<void> {
   Color get barrierColor => Colors.black.withOpacity(0.5);
 
   @override
-  String get barrierLabel => null;
+  Null get barrierLabel => null;
 
   @override
   bool get maintainState => true;
@@ -36,18 +40,79 @@ class TutorialOverlay extends ModalRoute<void> {
   }
 
   Widget _buildOverlayContent(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
-            'This is a nice overlay',
-            style: TextStyle(color: Colors.white, fontSize: 30.0),
+          Container(
+            height: (size.height * 0.50),
+            width: double.infinity,
+            margin: EdgeInsets.all(30.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25.0),
+              color: Colors.white,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Lottie.asset("assets/lottie/success.json", height: 100, repeat: false),
+                const Text('Great!',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 32,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primary,
+                  ),
+                  
+                ),
+                const Text(
+                  'Your account have been created successfully',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                   // color: AppColors.inputLabels,
+                    color: Color.fromRGBO(0, 0, 0, 0.55)
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    print("Button pressed");
+                  },
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          // Change your radius here
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                    ),
+                    ),
+                  child: const Text(
+                    "Start Exploring",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        fontFamily: 'Montserrat'
+                    ),
+                  ),
+
+                ),
+                const Text(
+                  'This is a nice overlay',
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Dismiss'),
+                )
+              ],
+            ),
           ),
-          RaisedButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Dismiss'),
-          )
+
         ],
       ),
     );
@@ -85,7 +150,10 @@ class TestPage extends StatelessWidget {
         child: Center(
           child: RaisedButton(
             onPressed: () => _showOverlay(context),
-            child: Text('Show Overlay'),
+            child: Container(
+              child: Text('Button')
+
+            ),
           ),
         ),
       ),
