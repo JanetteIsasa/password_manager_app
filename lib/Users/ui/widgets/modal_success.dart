@@ -56,26 +56,36 @@ class TutorialOverlay extends ModalRoute<void> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Lottie.asset("assets/lottie/success.json", height: 100, repeat: false),
-                const Text('Great!',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 32,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
+                Lottie.asset("assets/lottie/success.json", height: 105, repeat: false),
+                Container(
+                  child: Column(
+                    children: const [
+                      Text('Great!',
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 32,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Your account have been created successfully',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            // color: AppColors.inputLabels,
+                            color: Color.fromRGBO(0, 0, 0, 0.55)
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
-                const Text(
-                  'Your account have been created successfully',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                   // color: AppColors.inputLabels,
-                    color: Color.fromRGBO(0, 0, 0, 0.55)
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+
                 ElevatedButton(
                   onPressed: () {
                     //print("Button pressed");
