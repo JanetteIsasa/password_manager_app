@@ -24,11 +24,6 @@ class _ButtonPrimary extends State<ButtonPrimary>{
     return InkWell(
       onTap: widget.onPressed,
       child: Container(
-        margin: const EdgeInsets.only(
-            top: 30.0,
-            left: 20.0,
-            right: 20.0
-        ),
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
