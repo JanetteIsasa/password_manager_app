@@ -24,7 +24,7 @@ class CustomPainterHome extends CustomPainter{
     path0.quadraticBezierTo(size.width*0.0336250,size.height*0.7365750,0,size.height*0.9422000);
     path0.lineTo(0,0);
     path0.close();
-    
+
     canvas.drawPath(path0, paint0);
 
 

@@ -1,6 +1,7 @@
 
 import 'package:elevenpass/widgets/customs/custom_home.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/arrow_button.dart';
@@ -34,8 +35,8 @@ class Home extends StatelessWidget {
             Positioned(
               top: 25,
               child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               height: 85,
 
               decoration: BoxDecoration(
@@ -131,8 +132,52 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-            )
+            ),
           ]),
+          Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Text('mm..', style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'MontserratAlternates',
+                      fontSize: 20,
+                      color: AppColors.primary,
+                    ),
+                      textAlign: TextAlign.left,
+                    ),
+                      Text('It seems like ', style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'MontserratAlternates',
+                        fontSize: 20,
+                        color: AppColors.primary,
+                      ),),
+                      Text('there are no', style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'MontserratAlternates',
+                        fontSize: 20,
+                        color: AppColors.primary,
+                      ),),
+                      Text('vaults yet.' , style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'MontserratAlternates',
+                        fontSize: 20,
+                        color: AppColors.primary,
+                      ),),],
+                  ),
+                  Container(
+
+                    child: Lottie.asset("assets/lottie/empty-list.json",
+                        height: 180, repeat: true),
+                  )
+
+
+                ],
+              )
+          )
         ],
       ),
 
@@ -148,3 +193,5 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+
