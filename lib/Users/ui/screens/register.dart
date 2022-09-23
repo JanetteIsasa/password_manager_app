@@ -38,7 +38,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          //toolbarHeight: (size.height * 0.09),
+          toolbarHeight: 80,
           backgroundColor: AppColors.primary,
           elevation: 0,
           leading: const ArrowButton(),

@@ -1,9 +1,9 @@
 
+import 'package:elevenpass/widgets/customs/custom_home.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/arrow_button.dart';
-import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_app_bar.dart';
 
 class Home extends StatelessWidget {
@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: AppColors.primary,
         elevation: 0,
         leading: const ArrowButton(),
@@ -26,11 +27,13 @@ class Home extends StatelessWidget {
         children: [
           Stack(alignment: Alignment.center, children: [
             CustomPaint(
-              size: Size(double.infinity, size.height * 0.25),
-              painter: CustomPainter2(),
+              size: const Size(double.infinity, 220),
+              painter: CustomPainterHome(),
 
             ),
-            Container(
+            Positioned(
+              top: 25,
+              child: Container(
               margin: EdgeInsets.symmetric(horizontal: 20.0),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               height: 85,
@@ -103,8 +106,8 @@ class Home extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.transparent,
-                     elevation: 0,
-                     textStyle: const TextStyle(
+                      elevation: 0,
+                      textStyle: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                         fontFamily: 'Montserrat',
@@ -128,6 +131,7 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
+            )
           ]),
         ],
       ),

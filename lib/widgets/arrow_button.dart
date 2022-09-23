@@ -9,7 +9,7 @@ class ArrowButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkResponse(
       child: Container(
-        margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+        margin: const EdgeInsets.fromLTRB(5, 18, 5, 18),
         padding: const EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
