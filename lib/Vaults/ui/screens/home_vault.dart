@@ -169,12 +169,9 @@ class Home extends StatelessWidget {
                       ),),],
                   ),
                   Container(
-
                     child: Lottie.asset("assets/lottie/empty-list.json",
                         height: 180, repeat: true),
                   )
-
-
                 ],
               )
           )
