@@ -142,7 +142,7 @@ class Home extends StatelessWidget {
                       left: 30,
                       child: Column(
                         children: const [
-                          Text('mm..', style: TextStyle(
+                          Text('mm...', style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'MontserratAlternates',
                             fontSize: 24,
@@ -175,7 +175,8 @@ class Home extends StatelessWidget {
 
                       child: Container(
                         child: Lottie.asset("assets/lottie/empty-list.json",
-                            height: 210, repeat: true),
+                            height: 200
+                        ),
                       )
                   )
                 ],
