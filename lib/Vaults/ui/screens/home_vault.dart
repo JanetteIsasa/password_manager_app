@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
         children: [
           Stack(alignment: Alignment.center, children: [
             CustomPaint(
-              size: const Size(double.infinity, 220),
+              size: Size(double.infinity, size.height * 0.27),
               painter: CustomPainterHome(),
 
             ),
@@ -135,42 +135,48 @@ class Home extends StatelessWidget {
             ),
           ]),
           Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Stack(
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Text('mm..', style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'MontserratAlternates',
-                      fontSize: 20,
-                      color: AppColors.primary,
-                    ),
-                      textAlign: TextAlign.left,
-                    ),
-                      Text('It seems like ', style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'MontserratAlternates',
-                        fontSize: 20,
-                        color: AppColors.primary,
-                      ),),
-                      Text('there are no', style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'MontserratAlternates',
-                        fontSize: 20,
-                        color: AppColors.primary,
-                      ),),
-                      Text('vaults yet.' , style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'MontserratAlternates',
-                        fontSize: 20,
-                        color: AppColors.primary,
-                      ),),],
+                  Positioned(
+                      top: 200,
+                      left: 30,
+                      child: Column(
+                        children: const [
+                          Text('mm..', style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'MontserratAlternates',
+                            fontSize: 24,
+                            color: AppColors.primary,
+                          ),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text('It seems like ', style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'MontserratAlternates',
+                            fontSize: 24,
+                            color: AppColors.primary,
+                          ),),
+                          Text('there are no', style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'MontserratAlternates',
+                            fontSize: 24,
+                            color: AppColors.primary,
+                          ),),
+                          Text('vaults yet.' , style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'MontserratAlternates',
+                            fontSize: 24,
+                            color: AppColors.primary,
+                          ),),],
+                      ),
                   ),
-                  Container(
-                    child: Lottie.asset("assets/lottie/empty-list.json",
-                        height: 180, repeat: true),
+                  Positioned(
+                      right: -30,
+
+                      child: Container(
+                        child: Lottie.asset("assets/lottie/empty-list.json",
+                            height: 210, repeat: true),
+                      )
                   )
                 ],
               )
