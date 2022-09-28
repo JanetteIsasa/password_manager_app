@@ -243,9 +243,9 @@ class _RegisterState extends State<Register> {
 
     if (keyForm.currentState!.validate()) {
       setState(() {
-        emailCtrl.text = "";
-        nameCtrl.text = "";
-        passwordCtrl.text = "";
+       // emailCtrl.text = "";
+       // nameCtrl.text = "";
+       // passwordCtrl.text = "";
         _showOverlay(context);
         const ModalSuccess();
       });

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../Vaults/ui/screens/home_vault.dart';
 import '../../../widgets/app_colors.dart';
 
 class TutorialOverlay extends ModalRoute<void> {
@@ -96,9 +97,9 @@ class TutorialOverlay extends ModalRoute<void> {
 
                 //botón que le redirige al home
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const Home())),
                   style: ElevatedButton.styleFrom(
                       primary: AppColors.primary,
                       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),

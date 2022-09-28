@@ -38,7 +38,6 @@ class Welcome extends StatelessWidget {
       body: SafeArea(
         child: Expanded(
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: PageView(
