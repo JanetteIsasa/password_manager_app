@@ -139,9 +139,9 @@ class HomeFavorites extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: size.width * 0.9,
+                    width: size.width * 0.8,
                     child: const Text(
-                      'You have not add favorites yet',
+                      "You haven't add favorites yet",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontFamily: 'MontserratAlternates',
