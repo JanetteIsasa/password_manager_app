@@ -138,19 +138,28 @@ class HomeFavorites extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 40,
-                    child: Text(
-                      'Favorites list is empty',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'MontserratAlternates',
-                        fontSize: 24,
-                        color: AppColors.primary,
-                      ),
+                  const Text(
+                    'You have not add favorites',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'MontserratAlternates',
+                      fontSize: 24,
+                      color: AppColors.primary,
                     ),
                   ),
-                  Lottie.asset("assets/lottie/empy-list-favorites.json", height: 250)
+                  const Text(
+                    'yet',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'MontserratAlternates',
+                      fontSize: 24,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Lottie.asset("assets/lottie/empy-list-favorites.json", height: 200)
                 ],
               )
           )
