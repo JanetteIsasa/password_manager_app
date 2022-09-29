@@ -138,22 +138,17 @@ class HomeFavorites extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'You have not add favorites',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'MontserratAlternates',
-                      fontSize: 24,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                  const Text(
-                    'yet',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'MontserratAlternates',
-                      fontSize: 24,
-                      color: AppColors.primary,
+                  SizedBox(
+                    width: size.width * 0.9,
+                    child: const Text(
+                      'You have not add favorites yet',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'MontserratAlternates',
+                        fontSize: 24,
+                        color: AppColors.primary,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(
