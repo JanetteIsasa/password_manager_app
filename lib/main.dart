@@ -1,7 +1,9 @@
-import 'package:elevenpass/Vaults/ui/screens/home_vault.dart';
+
 import 'package:elevenpass/welcome.dart';
 import 'package:elevenpass/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import 'Favorites/ui/screens/home_favorites.dart';
 
 
 void main() {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Montserrat",
         backgroundColor: AppColors.primary,
       ),
-      home: const Home(),
+      home: Welcome(),
       debugShowCheckedModeBanner: false,
     );
   }
