@@ -135,50 +135,22 @@ class HomeFavorites extends StatelessWidget {
             ),
           ]),
           Expanded(
-              child: Stack(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Positioned(
-                    top: 200,
-                    left: 30,
-                    child: Column(
-                      children: const [
-                        Text('mm...', style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'MontserratAlternates',
-                          fontSize: 24,
-                          color: AppColors.primary,
-                        ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Text('It seems like ', style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'MontserratAlternates',
-                          fontSize: 24,
-                          color: AppColors.primary,
-                        ),),
-                        Text('there are no', style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'MontserratAlternates',
-                          fontSize: 24,
-                          color: AppColors.primary,
-                        ),),
-                        Text('vaults yet.' , style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'MontserratAlternates',
-                          fontSize: 24,
-                          color: AppColors.primary,
-                        ),),],
+                  const SizedBox(
+                    height: 40,
+                    child: Text(
+                      'Favorites list is empty',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'MontserratAlternates',
+                        fontSize: 24,
+                        color: AppColors.primary,
+                      ),
                     ),
                   ),
-                  Positioned(
-                      right: -30,
-
-                      child: Container(
-                        child: Lottie.asset("assets/lottie/empty-list.json",
-                            height: 200
-                        ),
-                      )
-                  )
+                  Lottie.asset("assets/lottie/empy-list-favorites.json", height: 250)
                 ],
               )
           )
