@@ -51,7 +51,8 @@ class HomeFavorites extends StatelessWidget {
                         null;
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: const Color.fromRGBO(56, 117, 211, 0.95),
+                        primary: Colors.transparent,
+                        elevation: 0,
                         textStyle: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
@@ -78,8 +79,7 @@ class HomeFavorites extends StatelessWidget {
                         null;
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        elevation: 0,
+                        primary: const Color.fromRGBO(56, 117, 211, 0.95),
                         textStyle: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
