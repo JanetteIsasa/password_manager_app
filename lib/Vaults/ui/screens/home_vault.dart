@@ -148,26 +148,22 @@ class Home extends StatelessWidget {
                             fontSize: 24,
                             color: AppColors.primary,
                           ),
-                            textAlign: TextAlign.left,
+                            textAlign: TextAlign.center,
                           ),
-                          Text('It seems like ', style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'MontserratAlternates',
-                            fontSize: 24,
-                            color: AppColors.primary,
-                          ),),
-                          Text('there are no', style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'MontserratAlternates',
-                            fontSize: 24,
-                            color: AppColors.primary,
-                          ),),
-                          Text('vaults yet.' , style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'MontserratAlternates',
-                            fontSize: 24,
-                            color: AppColors.primary,
-                          ),),],
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              'It seems like there are no vaults yet.',
+                              style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'MontserratAlternates',
+                              fontSize: 24,
+                              color: AppColors.primary,
+                            ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                         ],
                       ),
                   ),
                   Positioned(
