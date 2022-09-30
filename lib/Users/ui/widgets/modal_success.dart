@@ -1,8 +1,7 @@
 
+import 'package:elevenpass/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import '../../../Vaults/ui/screens/home_vault.dart';
 import '../../../widgets/app_colors.dart';
 
 class TutorialOverlay extends ModalRoute<void> {
