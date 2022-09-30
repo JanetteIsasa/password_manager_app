@@ -44,7 +44,7 @@ class BodyVault extends StatelessWidget {
 
             child: Container(
               child: Lottie.asset("assets/lottie/empty-list.json",
-                  height: 200
+                  height: 200, repeat: false
               ),
             )
         )

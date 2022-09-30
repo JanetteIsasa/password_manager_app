@@ -42,7 +42,10 @@ class _RegisterState extends State<Register> {
           backgroundColor: AppColors.primary,
           elevation: 0,
           leading: const ArrowButton(),
-          title: const TextAppBar("11Pass",),
+          leadingWidth: 75,
+          title: const TextAppBar(
+            "11Pass",
+          ),
           centerTitle: true,
         ),
         body: Column(

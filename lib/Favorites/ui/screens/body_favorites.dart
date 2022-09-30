@@ -29,7 +29,9 @@ class BodyFavorites extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Lottie.asset("assets/lottie/empy-list-favorites.json", height: 200)
+        Lottie.asset("assets/lottie/empy-list-favorites.json",
+            height: 200, repeat: false
+        )
       ],
     );
   }

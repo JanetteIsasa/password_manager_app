@@ -1,4 +1,5 @@
 import 'package:elevenpass/Accounst_Page/ui/screens/body_account.dart';
+import 'package:elevenpass/Accounst_Page/ui/widgets/image_and_user_name.dart';
 import 'package:elevenpass/Favorites/ui/screens/body_favorites.dart';
 import 'package:elevenpass/Vaults/ui/screens/body_vault.dart';
 import 'package:elevenpass/widgets/customs/custom_home.dart';
@@ -205,7 +206,7 @@ class _HomeState extends State<Home> {
             ),
 
             //Aparece sólo si aprieta el botón Account
-            if (index == 2) Positioned(bottom: 0, child: imageUser())
+            if (index == 2) const Positioned(bottom: 0, child: ImageUserName())
           ]),
 
           //Va cambiando el body de acuerdo al botón
@@ -234,30 +235,3 @@ class _HomeState extends State<Home> {
 }
 
 
-//Contenedor donde se carga la imagen del usuario
-Widget imageUser() {
-
-  return Column(
-    children: [
-      Container(
-        width: 90,
-        height: 90,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0), color: Colors.grey),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(50.0),
-          child: Image.asset('assets/images/imageUser.png', fit: BoxFit.cover),
-        ),
-      ),
-      const SizedBox(height: 5,),
-      const Text(
-        'user001',
-        style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
-            color: Color.fromRGBO(0, 0, 0, 0.82)
-        ),
-      )
-    ],
-  );
-}
