@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: const TextTheme(
-
         ),
         fontFamily: "Montserrat",
         backgroundColor: AppColors.primary,

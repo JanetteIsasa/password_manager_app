@@ -41,7 +41,7 @@ class _AccountDataState extends State<AccountData> {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
-                fontSize: 16, fontFamily: 'Montserrat', color: Colors.black),
+                fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
             decoration: const InputDecoration(
               contentPadding:
                   EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
