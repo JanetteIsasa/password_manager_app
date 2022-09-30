@@ -41,38 +41,48 @@ class _HomeState extends State<Home> {
           "11Pass",
         ),
         centerTitle: true,
-        actions: (index == 2) ? const [
-          IconButton(
-              onPressed: null,
-              icon: Icon(
-                  Icons.logout,
-                size: 30,
-                color: Colors.white,
-              )
-          ),
-          SizedBox(width: 15,),
-        ] : null,
+        actions: (index == 2)
+            ? const [
+                IconButton(
+                    onPressed: null,
+                    icon: Icon(
+                      Icons.logout,
+                      size: 30,
+                      color: Colors.white,
+                    )),
+                SizedBox(
+                  width: 15,
+                ),
+              ]
+            : null,
       ),
       body: Column(
         children: [
           Stack(alignment: Alignment.center, children: [
             CustomPaint(
-              size: Size(double.infinity, (index == 2) ? size.height * 0.35 : size.height * 0.27),
+              size: Size(double.infinity,
+                  (index == 2) ? size.height * 0.30 : size.height * 0.27),
               painter: CustomPainterHome(),
             ),
+
+            //Contenedor del Menú
             Positioned(
               top: 25,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 height: 85,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   color: AppColors.menuBackground,
                 ),
+
+                //Acá van los botones del menú
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    //Botón Vaults
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -109,7 +119,10 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    //Botón Favorites
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -146,7 +159,10 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    //Botón Account
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -187,39 +203,61 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            if (index == 2) Positioned( bottom: 10, child: imageUser())
+
+            //Aparece sólo si aprieta el botón Account
+            if (index == 2) Positioned(bottom: 0, child: imageUser())
           ]),
+
+          //Va cambiando el body de acuerdo al botón
           Expanded(
             child: homeBodies[index],
           ),
         ],
       ),
+
+      //Botón para agregar o editar, dependiendo de la vista
       floatingActionButton: SizedBox(
         width: 75,
         height: 75,
-        child: (index == 1)? null : FloatingActionButton(
-            onPressed: null,
-            backgroundColor: AppColors.dangerColor,
-            child: Icon(
-              (index == 0) ? Icons.add : Icons.edit,
-              size: 30,
-            )),
+        child: (index == 1)
+            ? null
+            : FloatingActionButton(
+                onPressed: null,
+                backgroundColor: AppColors.dangerColor,
+                child: Icon(
+                  (index == 0) ? Icons.add : Icons.edit,
+                  size: 30,
+                )),
       ),
     );
   }
 }
 
-Widget imageUser(){
-  return Container(
-    width: 90,
-    height: 90,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50.0),
-      color: Colors.grey
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(50.0),
-      child: Image.asset('assets/images/imageUser.png', fit: BoxFit.cover),
-    ),
+
+//Contenedor donde se carga la imagen del usuario
+Widget imageUser() {
+
+  return Column(
+    children: [
+      Container(
+        width: 90,
+        height: 90,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50.0), color: Colors.grey),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50.0),
+          child: Image.asset('assets/images/imageUser.png', fit: BoxFit.cover),
+        ),
+      ),
+      const SizedBox(height: 5,),
+      const Text(
+        'user001',
+        style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            color: Color.fromRGBO(0, 0, 0, 0.82)
+        ),
+      )
+    ],
   );
 }
