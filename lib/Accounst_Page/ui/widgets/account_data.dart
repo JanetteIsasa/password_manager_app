@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
 
-class CompleteForm extends StatefulWidget {
-  const CompleteForm({Key? key}) : super(key: key);
+class AccountData extends StatefulWidget {
+  const AccountData({Key? key}) : super(key: key);
 
   @override
-  State<CompleteForm> createState() => _CompleteFormState();
+  State<AccountData> createState() => _AccountDataState();
 }
 
-class _CompleteFormState extends State<CompleteForm> {
+class _AccountDataState extends State<AccountData> {
   GlobalKey<FormState> keyForm = GlobalKey();
 
   // Initially password is obscure
@@ -59,7 +59,8 @@ class _CompleteFormState extends State<CompleteForm> {
                   )),
             ),
           ),
-          SizedBox(height: 15),
+
+          const SizedBox(height: 15),
 
           //Password
           Row(
