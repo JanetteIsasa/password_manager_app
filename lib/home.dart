@@ -213,11 +213,12 @@ Widget imageUser(){
     width: 100,
     height: 100,
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40.0),
+        borderRadius: BorderRadius.circular(50.0),
+      color: Colors.grey
     ),
     child: ClipRRect(
-      borderRadius: BorderRadius.circular(40.0),
-      child: Image.asset('assets/images/imageUser.png', fit: BoxFit.cover,),
+      borderRadius: BorderRadius.circular(50.0),
+      child: Image.asset('assets/images/imageUser.png', fit: BoxFit.cover),
     ),
   );
 }
