@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
         backgroundColor: AppColors.primary,
         elevation: 0,
         leading: const ArrowButton(),
-        leadingWidth: 85,
+        leadingWidth: 75,
         title: const TextAppBar(
           "11Pass",
         ),
@@ -50,22 +50,21 @@ class _HomeState extends State<Home> {
                 color: Colors.white,
               )
           ),
-          SizedBox(width: 25,),
+          SizedBox(width: 15,),
         ] : null,
       ),
       body: Column(
         children: [
           Stack(alignment: Alignment.center, children: [
             CustomPaint(
-              size: Size(double.infinity, (index == 2) ? size.height * 0.40 : size.height * 0.27),
+              size: Size(double.infinity, (index == 2) ? size.height * 0.35 : size.height * 0.27),
               painter: CustomPainterHome(),
             ),
             Positioned(
               top: 25,
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 height: 85,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
@@ -94,7 +93,7 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
                       child: SizedBox(
-                        width: 75,
+                        width: 80,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
@@ -110,6 +109,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
+                    SizedBox(width: 5,),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
                       child: SizedBox(
-                        width: 75,
+                        width: 80,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
@@ -146,6 +146,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
+                    SizedBox(width: 5,),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -166,7 +167,7 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
                       child: SizedBox(
-                        width: 75,
+                        width: 80,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
@@ -210,8 +211,8 @@ class _HomeState extends State<Home> {
 
 Widget imageUser(){
   return Container(
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50.0),
       color: Colors.grey
