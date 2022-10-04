@@ -35,6 +35,10 @@ class EditProfile extends StatelessWidget {
           ),
         ]
       ),
+      body: Container(
+        color: Colors.white,
+        
+      )
     );
   }
 }
