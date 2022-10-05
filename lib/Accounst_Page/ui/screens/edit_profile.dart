@@ -49,12 +49,29 @@ class EditProfile extends StatelessWidget {
             ),
             Expanded(
                 child: Container(
-
+                  width: double.infinity,
                   decoration: const BoxDecoration(
                       color: Colors.white,
                     borderRadius: BorderRadius.vertical(top: Radius.circular(100), )
                   ),
+                  child: Column(
+                    children: const [
+                      TextButton(
+                          onPressed: null,
+                          child: Text(
+                              'Upload Image',
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Montserrat',
+                                color: AppColors.primary,
+                            ),
+                          )
+                      ),
 
+                    ],
+                  ),
                 )
             )
           ],
