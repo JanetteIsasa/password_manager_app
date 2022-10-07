@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/arrow_button.dart';
+import '../../../widgets/customs/custom_3.dart';
 import '../../../widgets/text_app_bar.dart';
 
 class EditProfile extends StatefulWidget {
@@ -13,13 +14,14 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  GlobalKey<FormState> keyForm = GlobalKey();
   // Initially password is obscure
   bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: AppColors.primary,
         appBar: AppBar(
             toolbarHeight: 80,
             backgroundColor: AppColors.primary,
@@ -44,132 +46,172 @@ class _EditProfileState extends State<EditProfile> {
             ]),
         body: Column(
           children: [
-            Container(
-              width: 90,
-              height: 90,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50.0),
-                  color: Colors.grey),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(50.0),
-                child: Image.asset('assets/images/imageUser.png',
-                    fit: BoxFit.cover),
+            Stack(
+                alignment: Alignment.center, children: [
+              CustomPaint(
+                size: Size(double.infinity, size.height * 0.18),
+                painter: CustomPainter3(),
               ),
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(100), )
-                ),
-                child: Column(
-
-                  children:  [
-                    const TextButton(
-                        onPressed: null,
-                        child: Text(
-                          'Upload Image',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Montserrat',
-                            color: AppColors.primary,
-                          ),
-                        )
-                    ),
-                    const SizedBox(height: 15,),
-                    const LabelText(text: 'name user',),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      style: const TextStyle(
-                          fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
-                      decoration: const InputDecoration(
-                        contentPadding:
-                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
+              Positioned(
+                  bottom: -15,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50.0),
+                            color: Colors.grey),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.asset('assets/images/imageUser.png',
+                              fit: BoxFit.cover),
                         ),
-                        hintText: 'user001@gmail.com',
-                        suffixIcon: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30.0),
-                            child: Icon(
-                              Icons.mail,
-                              color: AppColors.inputIconColor,
-                            )),
                       ),
-                    ),
-                    const LabelText(text: 'email',),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      style: const TextStyle(
-                          fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
-                      decoration: const InputDecoration(
-                        contentPadding:
-                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        hintText: 'user001@gmail.com',
-                        suffixIcon: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30.0),
-                            child: Icon(
-                              Icons.mail,
-                              color: AppColors.inputIconColor,
-                            )),
-                      ),
-                    ),
-                    const SizedBox(height: 15,),
-                    Row(
-                      children: const [
-                        Padding(
-                            padding: EdgeInsets.only(left: 10, bottom: 10),
-                            child: Text(
-                              'Change password',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Montserrat',
-                                color: AppColors.primary,
-                              ),
-                              textAlign: TextAlign.left,
-                            )
-                        ),
-                        Spacer(),
-                      ],
-                    ),
-                    const LabelText(text: 'old password'),
-                    inputPassword(),
-                    const LabelText(text: 'new password'),
-                    inputPassword(),
-                    const LabelText(text: 'repeat new password'),
-                    inputPassword(),
-
-                    Row(
-                      children: const [
-                        Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: TextButton(
-                                onPressed: null,
-                                child: Text(
-                                  'Delete Account',
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: 'Montserrat',
-                                    color: AppColors.dangerColor,
-                                  ),
-                                )
+                      const TextButton(
+                          onPressed: null,
+                          child: Text(
+                            'Upload Image',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Montserrat',
+                              color: AppColors.primary,
                             ),
-                        ),
-                        Spacer(),
-                      ],
-                    ),
-                    const LabelText(text: "When the account is delete,"),
-                    const LabelText(text: " it won't be possible to recover your data.")
+                          )
+                      ),
+                    ],
+                  ),)
+            ]),
+
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      color: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+
+                      child: Column(
+                        children:  [
+
+                          const SizedBox(height: 25,),
+
+                          //Contiene el formulario
+                          Form(
+                            key: keyForm,
+                            child: Column(
+                              children: [
+                                const LabelText(text: 'name user',),
+                                TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
+                                  style: const TextStyle(
+                                      fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
+                                  decoration: const InputDecoration(
+                                    contentPadding:
+                                    EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'user001@gmail.com',
+                                    suffixIcon: Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 30.0),
+                                        child: Icon(
+                                          Icons.mail,
+                                          color: AppColors.inputIconColor,
+                                        )),
+                                  ),
+                                ),
+                                const LabelText(text: 'email',),
+                                TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
+                                  style: const TextStyle(
+                                      fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
+                                  decoration: const InputDecoration(
+                                    contentPadding:
+                                    EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'user001@gmail.com',
+                                    suffixIcon: Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 30.0),
+                                        child: Icon(
+                                          Icons.mail,
+                                          color: AppColors.inputIconColor,
+                                        )),
+                                  ),
+                                ),
+                                const SizedBox(height: 15,),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                        padding: EdgeInsets.only(left: 10, bottom: 10),
+                                        child: Text(
+                                          'Change password',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Montserrat',
+                                            color: AppColors.primary,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        )
+                                    ),
+                                    Spacer(),
+                                  ],
+                                ),
+                                const LabelText(text: 'old password'),
+                                inputPassword(),
+                                const LabelText(text: 'new password'),
+                                inputPassword(),
+                                const LabelText(text: 'repeat new password'),
+                                inputPassword(),
+                              ],
+                            ),
+                          ),
+
+                          Row(
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TextButton(
+                                    onPressed: null,
+                                    child: Text(
+                                      'Delete Account',
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'Montserrat',
+                                        color: AppColors.dangerColor,
+                                      ),
+                                    )
+                                ),
+                              ),
+                              Spacer(),
+                            ],
+                          ),
+                          const Text("When the account is delete, it won't",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.inputLabels
+                          ),
+                            textAlign: TextAlign.left,
+                          ),
+                          const Text("be possible to recover your data.",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.inputLabels
+                            ),
+                            textAlign: TextAlign.left,)
+
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
