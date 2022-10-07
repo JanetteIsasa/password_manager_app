@@ -107,6 +107,61 @@ class EditProfile extends StatelessWidget {
                               )),
                         ),
                       ),
+                      Row(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Email',
+                              style: TextStyle(
+                                  color: AppColors.inputLabels,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                          Spacer(),
+                        ],
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        style: const TextStyle(
+                            fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
+                        decoration: const InputDecoration(
+                          contentPadding:
+                          EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: 'user001@gmail.com',
+                          // Here is key idea
+                          suffixIcon: IconButton(
+                              padding: EdgeInsets.symmetric(horizontal: 30.0),
+                              onPressed: null,
+                              icon: Icon(
+                                Icons.mail,
+                                color: AppColors.inputIconColor,
+                              )),
+                        ),
+                      ),
+
+                      TextFormField(
+
+                        decoration: new InputDecoration(
+//                          labelStyle: TextStyle(fontSize: 30),
+                          hintText: 'sss',
+                          label: Text(
+                            'Email',
+                            textAlign: TextAlign.left,
+                          ),
+                          floatingLabelStyle: TextStyle(
+                              color: AppColors.inputLabels,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
+
+
+                      ),
                     ],
                   ),
                 )
