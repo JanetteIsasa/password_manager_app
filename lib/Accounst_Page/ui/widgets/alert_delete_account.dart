@@ -47,6 +47,7 @@ class AlertDeleteAccount extends StatelessWidget {
 
         ),
       ),
+      style: TextButton.styleFrom(padding: EdgeInsets.zero),
       child: const TextDelete(),
     );
   }

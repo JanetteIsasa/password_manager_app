@@ -1,4 +1,5 @@
 import 'package:elevenpass/Accounst_Page/ui/screens/body_account.dart';
+import 'package:elevenpass/Accounst_Page/ui/screens/edit_profile.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/image_and_user_name.dart';
 import 'package:elevenpass/Favorites/ui/screens/body_favorites.dart';
 import 'package:elevenpass/Vaults/ui/screens/body_vault.dart';
@@ -223,7 +224,9 @@ class _HomeState extends State<Home> {
         child: (index == 1)
             ? null
             : FloatingActionButton(
-                onPressed: null,
+                onPressed: () => (index == 0) ? null : Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const EditProfile())),
                 backgroundColor: AppColors.dangerColor,
                 child: Icon(
                   (index == 0) ? Icons.add : Icons.edit,
