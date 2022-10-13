@@ -1,3 +1,4 @@
+import 'package:elevenpass/Accounst_Page/ui/widgets/alert_delete_account.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/button_delete.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/label_text.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/text_delete_description.dart';
@@ -130,7 +131,7 @@ class _EditProfileState extends State<EditProfile> {
                               ],
                             ),
                           ),
-                          const ButtonDelete(),
+                          const AlertDeleteAccount(),
                           const TextDeleteDescription(text: "When the account is delete, it won't"),
                           const TextDeleteDescription(text: "be possible to recover your data."),
 
