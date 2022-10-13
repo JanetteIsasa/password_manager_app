@@ -15,14 +15,15 @@ class AlertDeleteAccount extends StatelessWidget {
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-
-          content: Container(
+          actionsPadding: const EdgeInsets.symmetric(horizontal: 30),
+          contentPadding:  const EdgeInsets.symmetric(horizontal: 30),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+          content: SizedBox(
             height: 200,
-            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
+                const SizedBox(height: 15,),
                 Lottie.network('https://assets7.lottiefiles.com/packages/lf20_ij3k2doy.json', repeat: false, height: 120),
-                SizedBox(height: 15,),
                 const Text(
                   'Are you sure that you want delete your account?',
                   style: TextStyle(
@@ -32,25 +33,16 @@ class AlertDeleteAccount extends StatelessWidget {
                     color: AppColors.dangerColor,
                   ),
                   textAlign: TextAlign.center,
-                )
+                ),
+                const SizedBox(height: 15,),
               ],
             ),
           ),
           actions: <Widget>[
-            Column(
-              children: [
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: ButtonSecondary(text: 'Cancel', onPressed: () => Navigator.pop(context, 'Cancel'), height: 50, width: double.infinity)
-                ),
-                const SizedBox(height: 10,),
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: ButtonPrimary(text: 'Cancel', onPressed: () => Navigator.pop(context, 'Cancel'), height: 50, width: double.infinity)
-                ),
-
-              ],
-            )
+            ButtonSecondary(text: 'Delete', onPressed: () => Navigator.pop(context, 'Cancel'), height: 50, width: double.infinity),
+            const SizedBox(height: 10,),
+            ButtonPrimary(text: 'Cancel', onPressed: () => Navigator.pop(context, 'Cancel'), height: 50, width: double.infinity),
+            const SizedBox(height: 15,),
           ],
 
         ),

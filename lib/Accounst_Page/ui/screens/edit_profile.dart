@@ -63,8 +63,8 @@ class _EditProfileState extends State<EditProfile> {
                       Container(
                         width: 90,
                         height: 90,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50.0),
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
                             color: Colors.grey),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50.0),

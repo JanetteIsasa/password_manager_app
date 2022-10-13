@@ -27,8 +27,15 @@ class _ButtonSecondary extends State<ButtonSecondary>{
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
+            color: Colors.white,
           borderRadius: BorderRadius.circular(50.0),
-          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: AppColors.primary,
+              blurRadius: 2,
+            ),
+          ],
+
         ),
 
         child: Center(
