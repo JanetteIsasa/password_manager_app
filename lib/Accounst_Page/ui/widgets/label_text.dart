@@ -9,21 +9,13 @@ class LabelText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Text(
-            text,
-            style: const TextStyle(
-                color: AppColors.inputLabels,
-                fontSize: 18,
-                fontWeight: FontWeight.w400),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        const Spacer(),
-      ],
+    return  Text(
+      text,
+      style: const TextStyle(
+          color: AppColors.inputLabels,
+          fontSize: 18,
+          fontWeight: FontWeight.w400),
+      textAlign: TextAlign.left,
     );
   }
 }

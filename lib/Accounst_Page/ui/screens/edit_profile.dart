@@ -1,4 +1,6 @@
+import 'package:elevenpass/Accounst_Page/ui/widgets/button_delete.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/label_text.dart';
+import 'package:elevenpass/Accounst_Page/ui/widgets/text_delete_description.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
@@ -22,6 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
             toolbarHeight: 80,
             backgroundColor: AppColors.primary,
@@ -92,76 +95,32 @@ class _EditProfileState extends State<EditProfile> {
                     Container(
                       color: Colors.white,
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
-
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children:  [
-
                           const SizedBox(height: 25,),
-
                           //Contiene el formulario
                           Form(
                             key: keyForm,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const LabelText(text: 'name user',),
-                                TextFormField(
-                                  keyboardType: TextInputType.emailAddress,
-                                  style: const TextStyle(
-                                      fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                    EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    hintText: 'user001@gmail.com',
-                                    suffixIcon: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 30.0),
-                                        child: Icon(
-                                          Icons.mail,
-                                          color: AppColors.inputIconColor,
-                                        )),
-                                  ),
-                                ),
+                                inputUser(),
                                 const LabelText(text: 'email',),
-                                TextFormField(
-                                  keyboardType: TextInputType.emailAddress,
-                                  style: const TextStyle(
-                                      fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                    EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    hintText: 'user001@gmail.com',
-                                    suffixIcon: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 30.0),
-                                        child: Icon(
-                                          Icons.mail,
-                                          color: AppColors.inputIconColor,
-                                        )),
-                                  ),
-                                ),
+                                inputEmail(),
                                 const SizedBox(height: 15,),
-                                Row(
-                                  children: const [
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 10, bottom: 10),
-                                        child: Text(
-                                          'Change password',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: 'Montserrat',
-                                            color: AppColors.primary,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        )
-                                    ),
-                                    Spacer(),
-                                  ],
+                                const Text(
+                                  'Change password',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: 'Montserrat',
+                                    color: AppColors.primary,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
+                                const SizedBox(height: 10,),
                                 const LabelText(text: 'old password'),
                                 inputPassword(),
                                 const LabelText(text: 'new password'),
@@ -171,43 +130,9 @@ class _EditProfileState extends State<EditProfile> {
                               ],
                             ),
                           ),
-
-                          Row(
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: TextButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'Delete Account',
-                                      style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Montserrat',
-                                        color: AppColors.dangerColor,
-                                      ),
-                                    )
-                                ),
-                              ),
-                              Spacer(),
-                            ],
-                          ),
-                          const Text("When the account is delete, it won't",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.inputLabels
-                          ),
-                            textAlign: TextAlign.left,
-                          ),
-                          const Text("be possible to recover your data.",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.inputLabels
-                            ),
-                            textAlign: TextAlign.left,)
+                          const ButtonDelete(),
+                          const TextDeleteDescription(text: "When the account is delete, it won't"),
+                          const TextDeleteDescription(text: "be possible to recover your data."),
 
                         ],
                       ),
@@ -221,6 +146,47 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
+  Widget inputUser(){
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      style: const TextStyle(
+          fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
+      decoration: const InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 5.0,),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+        ),
+        hintText: 'user001@gmail.com',
+        suffixIcon: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Icon(
+              Icons.mail,
+              color: AppColors.inputIconColor,
+            )),
+      ),
+    );
+  }
+  Widget inputEmail(){
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      style: const TextStyle(
+          fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
+      decoration: const InputDecoration(
+        contentPadding:
+        EdgeInsets.symmetric(vertical: 5.0,),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+        ),
+        hintText: 'user001@gmail.com',
+        suffixIcon: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Icon(
+              Icons.mail,
+              color: AppColors.inputIconColor,
+            )),
+      ),
+    );
+  }
   Widget inputPassword(){
     return TextFormField(
         keyboardType: TextInputType.visiblePassword,
@@ -230,8 +196,7 @@ class _EditProfileState extends State<EditProfile> {
             fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
 
         decoration: InputDecoration(
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 5.0,),
           border: const OutlineInputBorder(
             borderSide: BorderSide.none,
           ),
@@ -266,6 +231,8 @@ class _EditProfileState extends State<EditProfile> {
         }
     );
   }
+
+
 }
 
 
