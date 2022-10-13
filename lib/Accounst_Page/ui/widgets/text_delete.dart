@@ -2,8 +2,8 @@ import 'package:elevenpass/Accounst_Page/ui/widgets/alert_delete_account.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
-class ButtonDelete extends StatelessWidget {
-  const ButtonDelete({Key? key}) : super(key: key);
+class TextDelete extends StatelessWidget {
+  const TextDelete({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

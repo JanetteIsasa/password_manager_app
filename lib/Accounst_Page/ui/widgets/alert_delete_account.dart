@@ -1,4 +1,4 @@
-import 'package:elevenpass/Accounst_Page/ui/widgets/button_delete.dart';
+import 'package:elevenpass/Accounst_Page/ui/widgets/text_delete.dart';
 import 'package:flutter/material.dart';
 
 class AlertDeleteAccount extends StatelessWidget {
@@ -24,7 +24,7 @@ class AlertDeleteAccount extends StatelessWidget {
           ],
         ),
       ),
-      child: const ButtonDelete(),
+      child: const TextDelete(),
     );
   }
 }
