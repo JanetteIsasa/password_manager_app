@@ -83,12 +83,12 @@ class _LoginState extends State<Login> {
       child: Column(
 
         children: <Widget>[
-          SizedBox(height: 30,),
+          const SizedBox(height: 70,),
           //contiene los inputs
           inputUser(),
-          SizedBox(height: 20,),
+          const SizedBox(height: 10,),
           inputPassword(),
-          SizedBox(height: 60,),
+          const SizedBox(height: 60,),
           //Botón submit
           ButtonPrimary(
             text: "Login",
