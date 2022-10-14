@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_is_empty
 
+import 'package:elevenpass/Users/ui/screens/login.dart';
 import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,9 @@ class _RegisterState extends State<Register> {
           ),
 
           //Text y Text Button
-          TextAndTextButton("Already have a account? ", pruebaButton, 'Login here', ),
+          TextAndTextButton("Already have a account? ", () => Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => const Login())), 'Login here', ),
         ],
       ),
     );
@@ -255,8 +258,4 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  //debería contener el on pressed de Login here
-  pruebaButton(){
-    null;
-  }
 }

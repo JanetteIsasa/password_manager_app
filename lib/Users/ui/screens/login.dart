@@ -57,8 +57,8 @@ class _LoginState extends State<Login> {
                 painter: CustomPainter2(),
               ),
               Positioned(
-                  top: 10,
-                  child: Lottie.asset("assets/lottie/registration.json",
+                  top: 15,
+                  child: Lottie.asset("assets/lottie/login.json",
                       height: 220, repeat: false))
             ]),
             Expanded(
