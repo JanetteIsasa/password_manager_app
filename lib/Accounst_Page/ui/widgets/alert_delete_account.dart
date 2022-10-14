@@ -23,7 +23,7 @@ class AlertDeleteAccount extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 15,),
-                Lottie.network('https://assets7.lottiefiles.com/packages/lf20_ij3k2doy.json', repeat: false, height: 120),
+                Lottie.asset('assets/lottie/warning.json', repeat: false, height: 120),
                 const Text(
                   'Are you sure that you want delete your account?',
                   style: TextStyle(
