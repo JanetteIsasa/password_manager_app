@@ -3,6 +3,7 @@ import 'package:elevenpass/Accounst_Page/ui/screens/edit_profile.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/image_and_user_name.dart';
 import 'package:elevenpass/Favorites/ui/screens/body_favorites.dart';
 import 'package:elevenpass/Vaults/ui/screens/body_vault.dart';
+import 'package:elevenpass/Vaults/ui/widgets/add_vault.dart';
 import 'package:elevenpass/widgets/customs/custom_home.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -224,7 +225,9 @@ class _HomeState extends State<Home> {
         child: (index == 1)
             ? null
             : FloatingActionButton(
-                onPressed: () => (index == 0) ? null : Navigator.of(context).push(
+                onPressed: () => (index == 0) ? Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const AddVault())) : Navigator.of(context).push(
                     MaterialPageRoute(
                         builder: (context) => const EditProfile())),
                 backgroundColor: AppColors.dangerColor,
