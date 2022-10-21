@@ -20,7 +20,7 @@ class AddVault extends StatelessWidget {
           title: const Text(
             'Add Vault',
             style: TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontSize: 24,
                 fontFamily: 'Montserrat'
             ),
@@ -49,6 +49,7 @@ class AddVault extends StatelessWidget {
                       const SizedBox(height: 10,),
                       const LabelText(text: 'Name',),
                       vaultName(),
+                      const SizedBox(height: 10,),
                       const LabelText(text: 'Icon',),
                       const SizedBox(height: 10,),
                       iconSelect(),
@@ -80,10 +81,6 @@ class AddVault extends StatelessWidget {
       style: const TextStyle(
           fontSize: 16, fontFamily: 'Montserrat', color: Colors.black, fontWeight: FontWeight.w400),
       decoration: const InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 5.0,),
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
         hintText: 'vault name',
         suffixIcon: Icon(
           Icons.account_balance_wallet,
