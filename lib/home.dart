@@ -225,9 +225,12 @@ class _HomeState extends State<Home> {
         child: (index == 1)
             ? null
             : FloatingActionButton(
-                onPressed: () => (index == 0) ? Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => const AddVault())) : Navigator.of(context).push(
+                onPressed: () => (index == 0) ? showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AddVault();
+                    })
+                    : Navigator.of(context).push(
                     MaterialPageRoute(
                         builder: (context) => const EditProfile())),
                 backgroundColor: AppColors.dangerColor,

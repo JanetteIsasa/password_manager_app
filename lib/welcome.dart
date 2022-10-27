@@ -1,7 +1,7 @@
+import 'package:elevenpass/Users/ui/screens/login.dart';
 import 'package:elevenpass/widgets/customs/custom_welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'Users/ui/screens/register.dart';
 import 'widgets/app_colors.dart';
 
 class Welcome extends StatelessWidget {
@@ -60,7 +60,7 @@ class Welcome extends StatelessWidget {
                         child: TextButton(
                             onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (context) => const Register())),
+                                    builder: (context) => const Login())),
                             child: const Text(
                               'Login In To Your Account',
                               textAlign: TextAlign.center,

@@ -102,6 +102,7 @@ class AddVault extends StatelessWidget {
       ),
       child: TextFormField(
         keyboardType: TextInputType.multiline,
+        maxLines: 5,
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(10),
           border: OutlineInputBorder(
