@@ -164,6 +164,7 @@ class _RegisterState extends State<Register> {
         validator: (value) {
           String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{12,64}";
           RegExp regExp = RegExp(pattern);
+     
           if (value!.length < 12) {
             return "Password too short.";
           } else if (!regExp.hasMatch(value)) {
@@ -171,7 +172,6 @@ class _RegisterState extends State<Register> {
           } else {
             return null;
           }
-
         }
     );
  }
@@ -245,16 +245,11 @@ class _RegisterState extends State<Register> {
  //acción a realizar una vez oprimido el botón Sing Up
   save() async {
 
-
-
     void _showOverlay(BuildContext context) {
       Navigator.of(context).push(TutorialOverlay());
     }
 
     if (keyForm.currentState!.validate()) {
-
-
-
       setState(() {
         emailCtrl.text = "";
         nameCtrl.text = "";

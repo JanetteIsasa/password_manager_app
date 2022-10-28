@@ -2,7 +2,6 @@
 
 import 'package:dio/dio.dart';
 import 'package:elevenpass/Users/ui/screens/register.dart';
-import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -175,26 +174,29 @@ class _LoginState extends State<Login> {
     try {
       Response response;
       var dio = Dio();
+      dio.options.connectTimeout = 5000;
+      dio.options.receiveTimeout = 3000;
       dio.options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       response = await dio.post('http://192.168.237.105:8000/api/v1/auth/login',
         data: {'username': nameCtrl.text, 'password': passwordCtrl.text},
-
       );
-
-      print(response.data);
     } on DioError catch (e) {
-      print(e);
-    }
-
-
-
-    if (keyForm.currentState!.validate()) {
-      setState(() {
-         Navigator.of(context).push(
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx and is also not 304.
+      if (e.response?.statusCode == 200) {
+        print("Entre");
+        Navigator.of(context).push(
             MaterialPageRoute(
                 builder: (context) => const Home()));
-      });
+
+      } else {
+        // Something happened in setting up or sending the request that triggered an Error
+        print("Entre else");
+      }
     }
+
+
+   
   }
 
 }
