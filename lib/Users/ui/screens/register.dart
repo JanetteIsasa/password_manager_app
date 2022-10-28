@@ -11,6 +11,7 @@ import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_app_bar.dart';
 import '../../../widgets/arrow_button.dart';
 import '../widgets/text_and_tbutton.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -30,6 +31,9 @@ class _RegisterState extends State<Register> {
 
   // Initially password is obscure
   bool _obscureText = true;
+
+  // Initially validator password is obscure
+  bool _validatorPassword = false;
 
   // Toggles the password show status
 
@@ -101,14 +105,38 @@ class _RegisterState extends State<Register> {
     final Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
-      height: (size.height * 0.50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           //contiene los inputs
           inputEmail(),
+          const SizedBox(height: 10,),
           inputUser(),
+          const SizedBox(height: 10,),
           inputPassword(),
+          SizedBox(height: 10,),
+          AnimatedOpacity(
+            // Si el Widget debe ser visible, anime a 1.0 (completamente visible). Si
+            // el Widget debe estar oculto, anime a 0.0 (invisible).
+            opacity: _validatorPassword ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 500),
+            // El cuadro verde debe ser el hijo de AnimatedOpacity
+            child: FlutterPwValidator(
+              controller: passwordCtrl,
+              minLength: 12,
+              uppercaseCharCount: 1,
+              numericCharCount: 1,
+              specialCharCount: 1,
+              width: 260,
+              height: (_validatorPassword == true) ? 80 : 0,
+              onSuccess: () {
+                print("Matched");
+              },
+            ),
+          ),
+
+          SizedBox(height: 10,),
+
 
           //Botón submit
           ButtonPrimary(
@@ -132,47 +160,37 @@ class _RegisterState extends State<Register> {
   //input personalizados
  Widget inputPassword(){
     return TextFormField(
-        keyboardType: TextInputType.text,
-        controller: passwordCtrl,
-        obscureText: !_obscureText,
-        //maxLength: 20,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50.0),
-            borderSide: BorderSide.none,
-          ),
-          hintText: 'Enter your password',
-          // Here is key idea
-          suffixIcon: IconButton(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            icon: Icon(
-              // Based on passwordVisible state choose the icon
-              _obscureText ? Icons.visibility : Icons.visibility_off,
-              color: AppColors.inputIconColor,
-            ),
-            onPressed: () {
-              // Update the state i.e. toogle the state of passwordVisible variable
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-          ),
-          fillColor: AppColors.inputBackground,
-          filled: true,
+      keyboardType: TextInputType.text,
+      controller: passwordCtrl,
+      obscureText: !_obscureText,
+      //maxLength: 20,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: BorderSide.none,
         ),
-        validator: (value) {
-          String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{12,64}";
-          RegExp regExp = RegExp(pattern);
-     
-          if (value!.length < 12) {
-            return "Password too short.";
-          } else if (!regExp.hasMatch(value)) {
-            return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
-          } else {
-            return null;
-          }
-        }
+        hintText: 'Enter your password',
+        // Here is key idea
+        suffixIcon: IconButton(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          icon: Icon(
+            // Based on passwordVisible state choose the icon
+            _obscureText ? Icons.visibility : Icons.visibility_off,
+            color: AppColors.inputIconColor,
+          ),
+          onPressed: () {
+            // Update the state i.e. toogle the state of passwordVisible variable
+            setState(() {
+              _obscureText = !_obscureText;
+
+            });
+          },
+        ),
+        fillColor: AppColors.inputBackground,
+        filled: true,
+      ),
+
     );
  }
  Widget inputUser(){
@@ -245,6 +263,9 @@ class _RegisterState extends State<Register> {
  //acción a realizar una vez oprimido el botón Sing Up
   save() async {
 
+    setState(() {
+      _validatorPassword = !_validatorPassword;
+    });
     void _showOverlay(BuildContext context) {
       Navigator.of(context).push(TutorialOverlay());
     }
@@ -254,8 +275,8 @@ class _RegisterState extends State<Register> {
         emailCtrl.text = "";
         nameCtrl.text = "";
         passwordCtrl.text = "";
-        _showOverlay(context);
-        const ModalSuccess();
+        //_showOverlay(context);
+        //const ModalSuccess();
       });
     }
   }
