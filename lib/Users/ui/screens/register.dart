@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_is_empty
 
+import 'package:dio/dio.dart';
 import 'package:elevenpass/Users/ui/screens/login.dart';
 import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
@@ -161,9 +162,9 @@ class _RegisterState extends State<Register> {
           filled: true,
         ),
         validator: (value) {
-          String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{8,20}";
+          String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{12,64}";
           RegExp regExp = RegExp(pattern);
-          if (value!.length < 8) {
+          if (value!.length < 12) {
             return "Password too short.";
           } else if (!regExp.hasMatch(value)) {
             return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
@@ -242,12 +243,18 @@ class _RegisterState extends State<Register> {
  }
 
  //acción a realizar una vez oprimido el botón Sing Up
-  save() {
+  save() async {
+
+
+
     void _showOverlay(BuildContext context) {
       Navigator.of(context).push(TutorialOverlay());
     }
 
     if (keyForm.currentState!.validate()) {
+
+
+
       setState(() {
         emailCtrl.text = "";
         nameCtrl.text = "";

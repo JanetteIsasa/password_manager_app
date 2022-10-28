@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_is_empty
 
+import 'package:dio/dio.dart';
 import 'package:elevenpass/Users/ui/screens/register.dart';
 import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import '../../../home.dart';
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_app_bar.dart';
@@ -140,18 +142,7 @@ class _LoginState extends State<Login> {
           fillColor: AppColors.inputBackground,
           filled: true,
         ),
-        validator: (value) {
-          String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%^&+=])(?=\\S+).{8,20}";
-          RegExp regExp = RegExp(pattern);
-          if (value!.length < 8) {
-            return "Password too short.";
-          } else if (!regExp.hasMatch(value)) {
-            return "The password must have at least 8 characters, uppercase, lowercase, special character, blank spaces are not allowed.";
-          } else {
-            return null;
-          }
 
-        }
     );
   }
   Widget inputUser(){
@@ -174,32 +165,34 @@ class _LoginState extends State<Login> {
         fillColor: AppColors.inputBackground,
         filled: true,
       ),
-      validator: (value) {
-        String pattern = r'(^[a-zA-Z ]*$)';
-        RegExp regExp = RegExp(pattern);
-        if (value?.length == 0) {
-          return "Name is required";
-        } else if (!regExp.hasMatch(value!)) {
-          return "The name must be a-z and A-Z";
-        }
-        return null;
-      },
+
     );
   }
 
   //acción a realizar una vez oprimido el botón Sing Up
-  save() {
-    void _showOverlay(BuildContext context) {
-      Navigator.of(context).push(TutorialOverlay());
+  save() async {
+
+    try {
+      Response response;
+      var dio = Dio();
+      dio.options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+      response = await dio.post('http://192.168.237.105:8000/api/v1/auth/login',
+        data: {'username': nameCtrl.text, 'password': passwordCtrl.text},
+
+      );
+
+      print(response.data);
+    } on DioError catch (e) {
+      print(e);
     }
+
+
 
     if (keyForm.currentState!.validate()) {
       setState(() {
-        emailCtrl.text = "";
-        nameCtrl.text = "";
-        passwordCtrl.text = "";
-        _showOverlay(context);
-        const ModalSuccess();
+         Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => const Home()));
       });
     }
   }
