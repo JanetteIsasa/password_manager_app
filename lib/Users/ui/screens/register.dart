@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_is_empty
 
-import 'package:dio/dio.dart';
 import 'package:elevenpass/Users/ui/screens/login.dart';
 import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
@@ -114,12 +112,12 @@ class _RegisterState extends State<Register> {
           inputUser(),
           const SizedBox(height: 10,),
           inputPassword(),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           AnimatedOpacity(
             // Si el Widget debe ser visible, anime a 1.0 (completamente visible). Si
             // el Widget debe estar oculto, anime a 0.0 (invisible).
             opacity: _validatorPassword ? 1.0 : 0.0,
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             // El cuadro verde debe ser el hijo de AnimatedOpacity
             child: FlutterPwValidator(
               controller: passwordCtrl,

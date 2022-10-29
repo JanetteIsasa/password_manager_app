@@ -5,6 +5,7 @@ import 'package:elevenpass/Users/ui/screens/register.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import '../../../Accounst_Page/ui/widgets/alert_delete_account.dart';
 import '../../../home.dart';
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
@@ -27,7 +28,6 @@ class _LoginState extends State<Login> {
   TextEditingController passwordCtrl = TextEditingController();
 
 
-
   // Initially password is obscure
   bool _obscureText = true;
 
@@ -35,7 +35,9 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery
+        .of(context)
+        .size;
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -64,7 +66,7 @@ class _LoginState extends State<Login> {
             ]),
             Expanded(
               child: SingleChildScrollView(
-                child:Form(
+                child: Form(
                   key: keyForm,
                   child: formUI(),
                 ),
@@ -76,8 +78,9 @@ class _LoginState extends State<Login> {
 
   //contiene la estructura del formulario
   Widget formUI() {
-
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery
+        .of(context)
+        .size;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
       height: (size.height * 0.50),
@@ -101,50 +104,52 @@ class _LoginState extends State<Login> {
           ),
 
           //Text y Text Button
-          TextAndTextButton("Don’t have account?", () => Navigator.of(context).push(
-              MaterialPageRoute(
-                  builder: (context) => const Register())), 'SignUp here', ),
+          TextAndTextButton("Don’t have account?", () =>
+              Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => const Register())), 'SignUp here',),
         ],
       ),
     );
   }
 
   //input personalizados
-  Widget inputPassword(){
+  Widget inputPassword() {
     return TextFormField(
-        keyboardType: TextInputType.text,
-        controller: passwordCtrl,
-        obscureText: !_obscureText,
-        //maxLength: 20,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50.0),
-            borderSide: BorderSide.none,
-          ),
-          hintText: 'Password',
-          // Here is key idea
-          suffixIcon: IconButton(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            icon: Icon(
-              // Based on passwordVisible state choose the icon
-              _obscureText ? Icons.visibility : Icons.visibility_off,
-              color: AppColors.inputIconColor,
-            ),
-            onPressed: () {
-              // Update the state i.e. toogle the state of passwordVisible variable
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-          ),
-          fillColor: AppColors.inputBackground,
-          filled: true,
+      keyboardType: TextInputType.text,
+      controller: passwordCtrl,
+      obscureText: !_obscureText,
+      //maxLength: 20,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 20.0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: BorderSide.none,
         ),
+        hintText: 'Password',
+        // Here is key idea
+        suffixIcon: IconButton(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          icon: Icon(
+            // Based on passwordVisible state choose the icon
+            _obscureText ? Icons.visibility : Icons.visibility_off,
+            color: AppColors.inputIconColor,
+          ),
+          onPressed: () {
+            // Update the state i.e. toogle the state of passwordVisible variable
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
+        ),
+        fillColor: AppColors.inputBackground,
+        filled: true,
+      ),
 
     );
   }
-  Widget inputUser(){
+
+  Widget inputUser() {
     return TextFormField(
       controller: nameCtrl,
       decoration: InputDecoration(
@@ -171,32 +176,30 @@ class _LoginState extends State<Login> {
   //acción a realizar una vez oprimido el botón Sing Up
   save() async {
 
+    Response response;
+    var dio = Dio();
+
     try {
-      Response response;
-      var dio = Dio();
-      dio.options.connectTimeout = 5000;
-      dio.options.receiveTimeout = 3000;
-      dio.options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-      response = await dio.post('http://192.168.237.105:8000/api/v1/auth/login',
+      dio.options.contentType= Headers.formUrlEncodedContentType;
+      response = await dio.post('http://10.0.2.2:8000/api/v1/auth/login',
         data: {'username': nameCtrl.text, 'password': passwordCtrl.text},
       );
+      Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => const Home()));
     } on DioError catch (e) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.
-      if (e.response?.statusCode == 200) {
-        print("Entre");
-        Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) => const Home()));
-
-      } else {
-        // Something happened in setting up or sending the request that triggered an Error
-        print("Entre else");
+      if (e.response != null) {
+        print(e.response?.data["detail"]);
+        print(e.response?.headers);
+        print(e.response?.requestOptions);
+        return false;
+      }else {
+        print("server off");
       }
     }
 
-
-   
   }
 
 }

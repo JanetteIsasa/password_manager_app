@@ -1,9 +1,7 @@
-import 'package:elevenpass/Accounst_Page/ui/widgets/text_delete.dart';
+
 import 'package:elevenpass/widgets/button_secondary.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-
 import '../../../Accounst_Page/ui/widgets/label_text.dart';
 import '../../../widgets/app_colors.dart';
 

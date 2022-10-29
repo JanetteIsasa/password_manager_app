@@ -86,7 +86,7 @@ class _AccountDataState extends State<AccountData> {
                 fontSize: 16, fontFamily: 'Montserrat', color: Colors.black),
             decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+                  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
               border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),

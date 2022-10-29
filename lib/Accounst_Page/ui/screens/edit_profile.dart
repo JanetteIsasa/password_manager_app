@@ -1,5 +1,4 @@
 import 'package:elevenpass/Accounst_Page/ui/widgets/alert_delete_account.dart';
-import 'package:elevenpass/Accounst_Page/ui/widgets/text_delete.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/label_text.dart';
 import 'package:elevenpass/Accounst_Page/ui/widgets/text_delete_description.dart';
 import 'package:flutter/material.dart';

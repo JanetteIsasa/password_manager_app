@@ -6,7 +6,6 @@ import 'package:elevenpass/Vaults/ui/screens/body_vault.dart';
 import 'package:elevenpass/Vaults/ui/widgets/add_vault.dart';
 import 'package:elevenpass/widgets/customs/custom_home.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/arrow_button.dart';
@@ -228,7 +227,7 @@ class _HomeState extends State<Home> {
                 onPressed: () => (index == 0) ? showDialog<void>(
                     context: context,
                     builder: (BuildContext context) {
-                      return AddVault();
+                      return const AddVault();
                     })
                     : Navigator.of(context).push(
                     MaterialPageRoute(
