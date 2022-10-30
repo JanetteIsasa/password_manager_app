@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_is_empty
 
 import 'package:dio/dio.dart';
 import 'package:elevenpass/Users/ui/screens/register.dart';
+import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../../Accounst_Page/ui/widgets/alert_delete_account.dart';
 import '../../../home.dart';
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
@@ -22,14 +21,17 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  var resp = "";
   GlobalKey<FormState> keyForm = GlobalKey();
   TextEditingController nameCtrl = TextEditingController();
-  TextEditingController emailCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
+
+
 
 
   // Initially password is obscure
   bool _obscureText = true;
+  bool _validator = false;
 
   // Toggles the password show status
 
@@ -87,7 +89,14 @@ class _LoginState extends State<Login> {
       child: Column(
 
         children: <Widget>[
+
           const SizedBox(height: 70,),
+          AnimatedOpacity(
+            opacity: _validator ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 500),
+          ),
+          Text(resp),
+          //Text(resp),
           //contiene los inputs
           inputUser(),
           const SizedBox(height: 10,),
@@ -97,7 +106,7 @@ class _LoginState extends State<Login> {
           ButtonPrimary(
             text: "Login",
             onPressed: () {
-              save();
+              loginButton();
             },
             height: (size.height * 0.075),
             width: double.infinity,
@@ -108,6 +117,8 @@ class _LoginState extends State<Login> {
               Navigator.of(context).push(
                   MaterialPageRoute(
                       builder: (context) => const Register())), 'SignUp here',),
+
+
         ],
       ),
     );
@@ -169,16 +180,29 @@ class _LoginState extends State<Login> {
         fillColor: AppColors.inputBackground,
         filled: true,
       ),
+      validator: (value) {
+        String pattern = r'(^[a-zA-Z ]*$)';
+        RegExp regExp = RegExp(pattern);
+        if (value?.length == 0) {
+          return "username is required";
+        } else if (!regExp.hasMatch(value!)) {
+          return "The name must be a-z and A-Z";
+        }
+        return null;
+      },
 
     );
   }
 
-  //acción a realizar una vez oprimido el botón Sing Up
-  save() async {
 
+  //acción a realizar una vez oprimido el botón Sing Up
+   loginButton() async {
+
+    setState(() {
+      _validator = !_validator;
+    });
     Response response;
     var dio = Dio();
-
     try {
       dio.options.contentType= Headers.formUrlEncodedContentType;
       response = await dio.post('http://10.0.2.2:8000/api/v1/auth/login',
@@ -190,16 +214,19 @@ class _LoginState extends State<Login> {
     } on DioError catch (e) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.
-      if (e.response != null) {
-        print(e.response?.data["detail"]);
-        print(e.response?.headers);
-        print(e.response?.requestOptions);
-        return false;
-      }else {
-        print("server off");
-      }
-    }
+      if (e.response?.statusCode == 401) {
+        print( e.response?.data["detail"]);
+        return resp = e.response?.data["detail"] ;
 
+      }else {
+
+        print("server off");
+        return resp = "Username and password is required";
+      }
+
+    }
   }
+
+
 
 }
