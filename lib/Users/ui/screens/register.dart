@@ -33,6 +33,8 @@ class _RegisterState extends State<Register> {
   // Initially validator password is obscure
   bool _validatorPassword = false;
 
+  bool limpiar = false;
+
   // Toggles the password show status
 
   @override
@@ -120,6 +122,7 @@ class _RegisterState extends State<Register> {
             duration: const Duration(milliseconds: 500),
             // El cuadro verde debe ser el hijo de AnimatedOpacity
             child: FlutterPwValidator(
+
               controller: passwordCtrl,
               minLength: 12,
               uppercaseCharCount: 1,
@@ -128,12 +131,12 @@ class _RegisterState extends State<Register> {
               width: 260,
               height: (_validatorPassword == true) ? 80 : 0,
               onSuccess: () {
-                print("Matched");
+                limpiar = true;
               },
             ),
           ),
 
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
 
 
           //Botón submit
@@ -212,8 +215,9 @@ class _RegisterState extends State<Register> {
         filled: true,
       ),
       validator: (value) {
-        String pattern = r'(^[a-zA-Z ]*$)';
+        String pattern = '(^[a-zA-Z ]*){0,10}';
         RegExp regExp = RegExp(pattern);
+        // ignore: prefer_is_empty
         if (value?.length == 0) {
           return "Name is required";
         } else if (!regExp.hasMatch(value!)) {
@@ -250,13 +254,14 @@ class _RegisterState extends State<Register> {
         if (value?.length == 0) {
           return "Mail is necessary";
         } else if (!regExp.hasMatch(value!)) {
-          return "Invalid email";
+          return "Invalid email, must be user@gmail.com";
         } else {
           return null;
         }
       },
     );
  }
+
 
  //acción a realizar una vez oprimido el botón Sing Up
   save() async {
@@ -268,7 +273,7 @@ class _RegisterState extends State<Register> {
       Navigator.of(context).push(TutorialOverlay());
     }
 
-    if (keyForm.currentState!.validate()) {
+    if ((keyForm.currentState!.validate())  &&  (limpiar==true)) {
       setState(() {
         emailCtrl.text = "";
         nameCtrl.text = "";
