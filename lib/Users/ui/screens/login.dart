@@ -90,13 +90,20 @@ class _LoginState extends State<Login> {
 
         children: <Widget>[
 
-          const SizedBox(height: 70,),
+          const SizedBox(height: 60,),
           AnimatedOpacity(
             opacity: _validator ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 300),
+            child: SizedBox(
+              height:(_validator==true) ?  30 : 0,
+              child: Text(resp, style:
+            const TextStyle(
+              fontFamily: "Montserrat",
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: AppColors.dangerColor,
+            ),),),
           ),
-          Text(resp),
-          //Text(resp),
           //contiene los inputs
           inputUser(),
           const SizedBox(height: 10,),
@@ -107,6 +114,7 @@ class _LoginState extends State<Login> {
             text: "Login",
             onPressed: () {
               loginButton();
+              _validator = true;
             },
             height: (size.height * 0.075),
             width: double.infinity,
@@ -169,7 +177,7 @@ class _LoginState extends State<Login> {
           borderRadius: BorderRadius.circular(50.0),
           borderSide: BorderSide.none,
         ),
-        hintText: "User Name",
+        hintText: "Username or email",
         suffixIcon: const IconButton(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             onPressed: null,
@@ -180,16 +188,6 @@ class _LoginState extends State<Login> {
         fillColor: AppColors.inputBackground,
         filled: true,
       ),
-      validator: (value) {
-        String pattern = r'(^[a-zA-Z ]*$)';
-        RegExp regExp = RegExp(pattern);
-        if (value?.length == 0) {
-          return "username is required";
-        } else if (!regExp.hasMatch(value!)) {
-          return "The name must be a-z and A-Z";
-        }
-        return null;
-      },
 
     );
   }
@@ -198,9 +196,6 @@ class _LoginState extends State<Login> {
   //acción a realizar una vez oprimido el botón Sing Up
    loginButton() async {
 
-    setState(() {
-      _validator = !_validator;
-    });
     Response response;
     var dio = Dio();
     try {
@@ -217,12 +212,11 @@ class _LoginState extends State<Login> {
       if (e.response?.statusCode == 401) {
         print( e.response?.data["detail"]);
         return resp = e.response?.data["detail"] ;
-
       }else {
-
         print("server off");
         return resp = "Username and password is required";
       }
+
 
     }
   }
