@@ -344,6 +344,7 @@ class _RegisterState extends State<Register> {
         }
       }
     }else {
+      msjError = false;
       print('else');
     }
   }
