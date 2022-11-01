@@ -5,6 +5,7 @@ import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import '../../../api_client.dart';
 import '../../../home.dart';
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
@@ -21,19 +22,42 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  var resp = "";
-  GlobalKey<FormState> keyForm = GlobalKey();
-  TextEditingController nameCtrl = TextEditingController();
-  TextEditingController passwordCtrl = TextEditingController();
-
-
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController nameCtrl = TextEditingController();
+  final TextEditingController passwordCtrl = TextEditingController();
+  final ApiClient _apiClient = ApiClient();
 
   // Initially password is obscure
   bool _obscureText = true;
-  bool _validator = false;
 
-  // Toggles the password show status
+  Future<void> login() async {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
+
+      dynamic res = await _apiClient.login(
+        nameCtrl.text,
+        passwordCtrl.text,
+      );
+
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+      if (res['ErrorCode'] == null) {
+        String accessToken = res['access_token'];
+        print(accessToken);
+        Navigator.push(context, MaterialPageRoute(
+                builder: (context) => Home(accesstoken: accessToken)));
+      }else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error: ${res['detail']}'),
+          backgroundColor: Colors.red.shade300,
+        ));
+
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +93,7 @@ class _LoginState extends State<Login> {
             Expanded(
               child: SingleChildScrollView(
                 child: Form(
-                  key: keyForm,
+                  key: _formKey,
                   child: formUI(),
                 ),
               ),
@@ -91,19 +115,6 @@ class _LoginState extends State<Login> {
         children: <Widget>[
 
           const SizedBox(height: 60,),
-          AnimatedOpacity(
-            opacity: _validator ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 300),
-            child: SizedBox(
-              height:(_validator==true) ?  30 : 0,
-              child: Text(resp, style:
-            const TextStyle(
-              fontFamily: "Montserrat",
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: AppColors.dangerColor,
-            ),),),
-          ),
           //contiene los inputs
           inputUser(),
           const SizedBox(height: 10,),
@@ -113,8 +124,7 @@ class _LoginState extends State<Login> {
           ButtonPrimary(
             text: "Login",
             onPressed: () {
-              loginButton();
-              _validator = true;
+              login();
             },
             height: (size.height * 0.075),
             width: double.infinity,
@@ -192,36 +202,4 @@ class _LoginState extends State<Login> {
     );
   }
 
-
-  //acción a realizar una vez oprimido el botón Sing Up
-   loginButton() async {
-
-    Response response;
-    var dio = Dio();
-    try {
-      dio.options.contentType= Headers.formUrlEncodedContentType;
-      response = await dio.post('http://10.0.2.2:8000/api/v1/auth/login',
-        data: {'username': nameCtrl.text, 'password': passwordCtrl.text},
-      );
-      Navigator.of(context).push(
-          MaterialPageRoute(
-              builder: (context) => const Home()));
-    } on DioError catch (e) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx and is also not 304.
-      if (e.response?.statusCode == 401) {
-        print( e.response?.data["detail"]);
-        return resp = e.response?.data["detail"] ;
-      }else {
-        print("server off");
-        return resp = "Username and password is required";
-      }
-
-
-    }
-
   }
-
-
-
-}

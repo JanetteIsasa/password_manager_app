@@ -8,17 +8,20 @@ import 'package:elevenpass/widgets/customs/custom_home.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
-import '../../../widgets/arrow_button.dart';
 import '../../../widgets/text_app_bar.dart';
+import 'api_client.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final String accesstoken;
+  Home({Key? key, required this.accesstoken}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  final ApiClient _apiClient = ApiClient();
+
   static const List<Widget> homeBodies = [
     BodyVault(),
     BodyFavorites(),
@@ -37,7 +40,18 @@ class _HomeState extends State<Home> {
         toolbarHeight: 80,
         backgroundColor: AppColors.primary,
         elevation: 0,
-        leading: const ArrowButton(),
+        leading: Container(
+          margin: const EdgeInsets.fromLTRB(25, 18, 5, 18),
+          padding: const EdgeInsets.only(left: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: AppColors.menuBackground),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 24,
+          ),
+        ),
         leadingWidth: 75,
         title: const TextAppBar(
           "11Pass",

@@ -2,9 +2,13 @@
 import 'package:elevenpass/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import '../../../api_client.dart';
 import '../../../widgets/app_colors.dart';
+import '../screens/login.dart';
+
 
 class TutorialOverlay extends ModalRoute<void> {
+
   @override
   Duration get transitionDuration => const Duration(milliseconds: 500);
 
@@ -96,9 +100,10 @@ class TutorialOverlay extends ModalRoute<void> {
 
                 //botón que le redirige al home
                 ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => const Home())),
+                 onPressed: (){
+                   Navigator.push(context, MaterialPageRoute(
+                       builder: (context) => const Login()));
+                 },
                   style: ElevatedButton.styleFrom(
                       primary: AppColors.primary,
                       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),

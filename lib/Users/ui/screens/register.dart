@@ -6,14 +6,17 @@ import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../../home.dart';
+import '../../../utils/validator.dart';
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/customs/custom2.dart';
 import '../../../widgets/text_app_bar.dart';
 import '../../../widgets/arrow_button.dart';
 import '../widgets/text_and_tbutton.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import '../../../api_client.dart';
 
 class Register extends StatefulWidget {
+  static String id = "register_screen";
   const Register({Key? key}) : super(key: key);
 
 
@@ -22,15 +25,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  GlobalKey<FormState> keyForm = GlobalKey();
-  TextEditingController nameCtrl = TextEditingController();
-  TextEditingController emailCtrl = TextEditingController();
-  TextEditingController passwordCtrl = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController nameCtrl = TextEditingController();
+  final TextEditingController emailCtrl = TextEditingController();
+  final TextEditingController passwordCtrl = TextEditingController();
+  final ApiClient _apiClient = ApiClient();
 
   String secretKey = "stringstringstringstr";
   String img = 'https://www.images.com/sdafjhasfasd';
-
-  var resp = "";
 
   // Initially password is obscure
   bool _obscureText = true;
@@ -38,8 +40,45 @@ class _RegisterState extends State<Register> {
   // Initially validator password is obscure
   bool _validatorPassword = false;
 
-  bool limpiar = false;
-  bool msjError = false;
+  bool _passwordCorrecto = false;
+
+
+
+  Future<void> registerUsers() async {
+
+    if ((_formKey.currentState!.validate()) && (_passwordCorrecto == true)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
+
+      Map<String, dynamic> userData = {'password': passwordCtrl.text,
+        'email': emailCtrl.text,
+        'username': nameCtrl.text,
+        'profile_url': img,
+        'secret_key': secretKey};
+
+      dynamic res = await _apiClient.registerUser(userData);
+
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+      print(res['id']);
+      if (res['id'] != null){
+        void _showOverlay(BuildContext context) {
+          Navigator.of(context).push(TutorialOverlay());
+        }
+        _showOverlay(context);
+        const ModalSuccess();
+
+      } else {
+        print('else');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error: ${res['detail']}'),
+          backgroundColor: Colors.red.shade300,
+        ));
+      }
+    }
+  }
 
   // Toggles the password show status
 
@@ -91,26 +130,9 @@ class _RegisterState extends State<Register> {
                           ),
                         )),
 
-                    AnimatedOpacity(
-                      // Si el Widget debe ser visible, anime a 1.0 (completamente visible). Si
-                      // el Widget debe estar oculto, anime a 0.0 (invisible).
-                      opacity: msjError ? 1.0 : 0.0,
-                      duration: const Duration(milliseconds: 500),
-                      // El cuadro verde debe ser el hijo de AnimatedOpacity
-                      child: SizedBox(
-                        height:(msjError==true) ?  30 : 0,
-                        child: Text(resp, style:
-                        const TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.dangerColor,
-                        ),),),
-                    ),
-
                     //Contiene el formulario
                     Form(
-                      key: keyForm,
+                      key: _formKey,
                       child: formUI(),
                     ),
 
@@ -151,9 +173,9 @@ class _RegisterState extends State<Register> {
               numericCharCount: 1,
               specialCharCount: 1,
               width: 260,
-              height: (_validatorPassword == true) ? 80 : 0,
+              height: 80,
               onSuccess: () {
-                limpiar = true;
+                _passwordCorrecto = true;
               },
             ),
           ),
@@ -164,7 +186,9 @@ class _RegisterState extends State<Register> {
           ButtonPrimary(
             text: "Sign Up",
             onPressed: () {
-              add();
+               registerUsers();
+              _validatorPassword = true;
+
             },
             height: (size.height * 0.075),
             width: double.infinity,
@@ -211,6 +235,7 @@ class _RegisterState extends State<Register> {
         ),
         fillColor: AppColors.inputBackground,
         filled: true,
+
       ),
 
     );
@@ -236,17 +261,8 @@ class _RegisterState extends State<Register> {
         fillColor: AppColors.inputBackground,
         filled: true,
       ),
-      validator: (value) {
-        String pattern = '(^[a-zA-Z ]*){0,10}';
-        RegExp regExp = RegExp(pattern);
-        // ignore: prefer_is_empty
-        if (value?.length == 0) {
-          return "Name is required";
-        } else if (!regExp.hasMatch(value!)) {
-          return "The name must be a-z and A-Z";
-        }
-        return null;
-      },
+      validator: (value) =>
+          Validator.validateName(value ?? ""),
     );
  }
  Widget inputEmail(){
@@ -270,83 +286,9 @@ class _RegisterState extends State<Register> {
         fillColor: AppColors.inputBackground,
         filled: true,
       ),
-      validator: (value) {
-        String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-        RegExp regExp = RegExp(pattern);
-        if (value?.length == 0) {
-          return "Mail is necessary";
-        } else if (!regExp.hasMatch(value!)) {
-          return "Invalid email, must be user@gmail.com";
-        } else {
-          return null;
-        }
-      },
+      validator: (value) =>
+          Validator.validateEmail(value ?? ""),
     );
  }
-
-
- //acción a realizar una vez oprimido el botón Sing Up
-  save() {
-    setState(() {
-      _validatorPassword = !_validatorPassword;
-    });
-
-    if ((keyForm.currentState!.validate())  &&  (limpiar==true)) {
-      setState(() {
-        limpiar=false;
-      });
-
-      return true;
-    }
-  }
-
-
-  add() async {
-
-    void _showOverlay(BuildContext context) {
-      Navigator.of(context).push(TutorialOverlay());
-    }
-
-    //sólo entra en este if si todas las validacones de los inputs y el password son correctos
-    if(save()==true) {
-
-      Response response;
-      var dio = Dio();
-      try {
-        response = await dio.post(
-            'http://10.0.2.2:8000/api/v1/auth/signup',
-          data: {'password': passwordCtrl.text,
-            'email': emailCtrl.text,
-            'username': nameCtrl.text,
-            'profile_url': img,
-            'secret_key': secretKey},
-        );
-
-        setState(() {
-          emailCtrl.text = "";
-          nameCtrl.text = "";
-          passwordCtrl.text = "";
-          msjError=false;
-        });
-        _showOverlay(context);
-        const ModalSuccess();
-
-      } on DioError catch (e) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx and is also not 304.
-        if (e.response != null) {
-          msjError = true;
-          print(e.response?.statusCode);
-          print(e.response?.data["detail"]);
-          return resp = e.response?.data["detail"] ;
-        } else {
-          print("server off");
-        }
-      }
-    }else {
-      msjError = false;
-      print('else');
-    }
-  }
 
 }
