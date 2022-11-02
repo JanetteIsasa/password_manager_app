@@ -4,6 +4,7 @@ import 'package:elevenpass/Users/ui/screens/register.dart';
 import 'package:elevenpass/Users/ui/widgets/modal_success.dart';
 import 'package:elevenpass/widgets/buttons_primary.dart';
 import 'package:flutter/material.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:lottie/lottie.dart';
 import '../../../api_client.dart';
 import '../../../home.dart';

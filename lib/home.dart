@@ -21,7 +21,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final ApiClient _apiClient = ApiClient();
 
   static const List<Widget> homeBodies = [
     BodyVault(),
