@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/app_colors.dart';
 import '../../../widgets/text_app_bar.dart';
+import 'Users/ui/screens/login.dart';
 import 'api_client.dart';
 
 class Home extends StatefulWidget {
@@ -58,15 +59,19 @@ class _HomeState extends State<Home> {
         ),
         centerTitle: true,
         actions: (index == 2)
-            ? const [
+            ? [
                 IconButton(
-                    onPressed: null,
-                    icon: Icon(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => const Login()));
+                  },
+                    icon: const Icon(
                       Icons.logout,
                       size: 30,
                       color: Colors.white,
-                    )),
-                SizedBox(
+                    ),
+                ),
+                const SizedBox(
                   width: 15,
                 ),
               ]

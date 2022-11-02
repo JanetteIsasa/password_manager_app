@@ -44,14 +44,16 @@ class _LoginState extends State<Login> {
 
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
-      if (res['ErrorCode'] == null) {
+      if (res['access_token'] != null) {
         String accessToken = res['access_token'];
         print(accessToken);
         Navigator.push(context, MaterialPageRoute(
                 builder: (context) => Home(accesstoken: accessToken)));
       }else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['detail']}'),
+          content: const Text('Error: username or password invalid',
+            style: TextStyle(fontWeight: FontWeight.w500, fontFamily: 'Montserrat'),
+          textAlign: TextAlign.center,),
           backgroundColor: Colors.red.shade300,
         ));
 

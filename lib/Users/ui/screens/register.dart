@@ -73,7 +73,9 @@ class _RegisterState extends State<Register> {
       } else {
         print('else');
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['detail']}'),
+          content: Text('Error: ${res['detail']}',
+            style: const TextStyle(fontWeight: FontWeight.w500, fontFamily: 'Montserrat'),
+          textAlign: TextAlign.center,),
           backgroundColor: Colors.red.shade300,
         ));
       }
@@ -167,6 +169,9 @@ class _RegisterState extends State<Register> {
             duration: const Duration(milliseconds: 500),
             // El cuadro verde debe ser el hijo de AnimatedOpacity
             child: FlutterPwValidator(
+              onFail: (){
+                _passwordCorrecto = false;
+              },
               controller: passwordCtrl,
               minLength: 12,
               uppercaseCharCount: 1,
